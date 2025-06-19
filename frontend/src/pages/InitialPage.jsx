@@ -28,21 +28,23 @@ function InitialPage({ onNavigate, onShowWallet }) { // Added onShowWallet prop
     position: 'fixed',
     top: 0,
     left: 0,
-    width: '90vw', // Make the div cover the full viewport width
-    height: '90vh', // Make the div cover the full viewport height
-    backgroundImage: `url('/assets/images/background3.png')`,
-    backgroundSize: 'cover', // This will scale the image to cover the area, cropping if needed
+    // width: '100vw', // Make the div cover the full viewport width
+    // height: '100vh', // Make the div cover the full viewport height
+    backgroundImage: `md:url('/assets/images/background5.png sm:url('/assets/images/background2.png')`,
+    //backgroundSize: 'contain', // This will scale the image to cover the area, cropping if needed
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
-    zIndex: 1
+    //zIndex: -1
   };
 
   return (
     <div 
-      className="min-h-screen w-screen bg-[#0a0a1a] flex flex-col items-center justify-center p-4 font-display text-starlight-white relative overflow-hidden"
+      //className="w-screen h-screen bg-[#0a0a1a] relative"
+      className="h-screen w-screen bg-[#0a0a1a] flex flex-col items-center justify-center p-4 font-display text-starlight-white relative overflow-hidden"
     >
       {/* Fixed Background Image Element */}
-      <div style={fixedBackgroundStyle}></div>
+      <div className='w-screen h-screen bg-fill' style={fixedBackgroundStyle}></div>
+      
       {/* Background Music */}
       <audio 
         id="bg-music-initial" 
