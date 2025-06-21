@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roninmon: Forgotten Land</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <div id="landing-screen" class="game-screen active">
+            <img src="assets/logoRonenmon.png" alt="Roninmon Logo" class="roninmon-logo">
+            <button id="getRoninmonBtn" class="game-button primary">Get your Roninmon</button>
+            <button id="connectWalletBtn" class="game-button secondary">Connect Wallet</button>
+        </div>
+
+        <div id="main-menu-screen" class="game-screen">
+            <button id="exitBtn" class="top-left-button game-button tertiary">
+                <img src="assets/exitButton.png" alt="Exit" class="button-img medium-icon">
+            </button>
+            <div class="top-right-info">
+                <div class="player-wallet-info game-card">
+                    <img src="assets/logoWallet.png" alt="Player Icon" class="info-icon">
+                    <span id="walletAddress">7wdaxsxia</span>
+                </div>
+                <div class="resource-info game-card">
+                    <img src="assets/logoCoin.png" alt="Resource Icon" class="info-icon">
+                    <span id="resourceCount">200</span>
+                </div>
+            </div>
+
+            <div class="left-sidebar">
+                <button id="incubatorBtn" class="sidebar-icon-button game-button primary">
+                    <img src="assets/incubatorButton.png" alt="Incubator" class="sidebar-icon">
+                </button>
+                <button id="inventoryBtn" class="sidebar-icon-button game-button primary">
+                    <img src="assets/inventoryButton.png" alt="Inventory" class="sidebar-icon">
+                </button>
+                <button id="walletPageSidebarBtn" class="sidebar-icon-button game-button primary">
+                    <img src="assets/walletButton.png" alt="Wallet" class="sidebar-icon">
+                </button>
+            </div>
+
+            <button id="playBtn" class="bottom-right-button game-button tertiary">
+                <img src="assets/playButton.png" alt="Play Game" class="button-img large-icon">
+            </button>
+        </div>
+
+        <div id="inventory-screen" class="game-screen">
+            <h1>Your Roninmon Collection</h1>
+            <p>This is where your NFTs will be displayed.</p>
+            <button id="backToMainMenuFromInventoryBtn" class="game-button tertiary">Back to Main Menu</button>
+        </div>
+
+        <div id="wallet-page-screen" class="game-screen">
+            <h1>Your Roninmon Wallet</h1>
+            <p>Go TOPUP!!!.</p>
+            <button id="backToMainMenuFromWalletBtn" class="game-button tertiary">Back to Main Menu</button>
+        </div>
+
+        <div id="monster-page-screen" class="game-screen">
+            <button id="backFromMonsterBtn" class="top-left-button game-button tertiary">
+                <img src="assets/backButton.png" alt="Back" class="button-img medium-icon">
+            </button>
+
+            <div class="top-right-info">
+                <div class="player-wallet-info game-card">
+                    <img src="assets/logoWallet.png" alt="Player Icon" class="info-icon">
+                    <span id="walletAddress">7wdaxsxia</span>
+                </div>
+                <div class="resource-info game-card">
+                    <img src="assets/logoCoin.png" alt="Resource Icon" class="info-icon">
+                    <span id="resourceCount">200</span>
+                </div>
+            </div>
+
+            <!-- <div class="tv-screen-container">
+                <div class="tv-screen-display">
+                    <img src="assets/tvStatic.webp" alt="Static Noise" class="tv-static-effect">
+                </div>
+                <div class="tv-screen-controls">
+                    <button class="tv-control-button red-button"></button>
+                    <button class="tv-control-button green-button"></button>
+                </div>
+            </div> -->
+
+            <div class="tv-screen-container">
+                <div id="tvScreenDisplay" class="tv-screen-display">
+                    <img id="tvStaticEffect" src="assets/tvStatic.webp" alt="Static Noise" class="tv-static-effect active">
+                    
+                    <div id="tvMonsterInfoOverlay" class="tv-monster-info-overlay">
+                        <img id="tvMonsterImage" src="" alt="" class="tv-monster-image">
+                        <h3 id="monsterTvId" class="monster-tv-id"></h3>
+                        <div class="energy-bar-container">
+                            <div id="energyBarFill" class="energy-bar-fill"></div>
+                            <span id="energyText" class="energy-text"></span>
+                        </div>
+                        <p id="energyRateText" class="energy-rate-text"></p>
+                    </div>
+                </div>
+                
+                <div class="tv-screen-controls">
+                    <button id="tvRedButton" class="tv-control-button red-button"></button>
+                    <button id="tvGreenButton" class="tv-control-button green-button"></button>
+                </div>
+            </div>
+
+            <div class="monster-grid-container game-card">
+                <div class="monster-grid">
+                    <div class="monster-slot img"><img src="assets/fireheartIcon.png" alt="Monster 1"></div>
+                    <div class="monster-slot img"><img src="assets/whatguyIcon.png" alt="Monster 6"></div>
+                    <div class="monster-slot img"><img src="assets/justcatIcon.png" alt="Monster 2"></div>
+                    <div class="monster-slot img"><img src="assets/17.png" alt="Monster 6"></div>
+                    <div class="monster-slot img"><img src="assets/chillguypurpleIcon.png" alt="Monster 6"></div>
+                    <div class="monster-slot img"><img src="assets/treeeyeIcon.png" alt="Monster 6"></div>
+                </div>
+            </div>
+            <button id="battleBtnMonster" class="bottom-right-button start-button battle">
+                <img src="assets/battleIcon.png" class="button-img medium-icon">
+            </button>
+        </div>
+
+        <div id="incubator-page-screen" class="game-screen">
+            <h1>Roninmon Incubator</h1>
+            <p>Hatch new Roninmon here!</p>
+            <button id="backToMainMenuFromIncubatorBtn" class="game-button tertiary">Back to Main Menu</button>
+        </div>
+    
+        <div id="wallet-modal-overlay" class="modal-overlay">
+            <div id="wallet-modal-content" class="game-card">
+                <button id="modalExitBtn" class="modal-exit-button game-button secondary">
+                    <img src="assets/exitButtonSmall.png" alt="Close" class="button-img small-icon">
+                </button>
+                <img src="assets/logoRoninmonYellow.png" alt="Metamask Logo" class="modal-logo">
+                <p class="modal-instruction">Connect your wallet to begin:</p>
+                <button id="connectMetamaskBtn" class="game-button wallet">
+                    <!-- <img src="assets/roninwalletIcon.png" alt="Ronin Wallet Logo" class="wallet-logo"> -->
+                    Connect Wallet
+                </button>
+                <button id="modalStartGameBtn" class="game-button wallet">Forgetting Button</button>
+            </div>
+        </div>
+
+        <div id="game-message-overlay" class="game-overlay">
+            <p id="game-message-text"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
