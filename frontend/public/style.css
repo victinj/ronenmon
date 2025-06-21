@@ -1,0 +1,771 @@
+/* General Styling */
+body {
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling if game is larger than viewport */
+    /* Changed general font to Irish Grover, with Arial/sans-serif as fallback */
+    font-family: 'Irish Grover', cursive, Arial, sans-serif; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    background-color: #333; /* Default background, will be overridden by game background */
+}
+
+#game-container {
+    width: 100vw; /* Takes full width of the viewport */
+    height: 100vh; /* Takes full height of the viewport */
+    position: relative; /* For absolutely positioning screens inside */
+    overflow: hidden; /* Hide anything that overflows */
+    /* Background image path is relative to style.css within assets/ */
+    background-image: url('assets/backgroundHome.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Game Screens */
+.game-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; /* Use flexbox for centering content */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay, adjust as needed for non-landing screens */
+    color: white;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    opacity: 0;
+    pointer-events: none; /* Make screen non-interactive when hidden */
+    transition: opacity 0.5s ease-in-out; /* Smooth transition for screen changes */
+    padding: 20px;
+    text-align: center;
+}
+
+.game-screen.active {
+    opacity: 1;
+    pointer-events: auto; /* Make screen interactive when active */
+}
+
+/* Landing Page Specific Styles */
+#landing-screen {
+    /* The background is on #game-container, so this screen doesn't need its own overlay */
+    background-color: transparent; 
+}
+
+#monster-page-screen {
+    background-color: transparent; /* No overlay, let background image show */
+    display: block; /* Use block to allow absolute positioning of children */
+    padding: 0;
+}
+
+/* UPDATED: Main Menu Screen Specific Styles */
+#main-menu-screen {
+    background-color: transparent; /* No overlay on main menu, let background image show */
+    display: block; /* Use block to allow child absolute positioning */
+    padding: 0; /* Remove default padding */
+}
+
+.roninmon-logo {
+    max-width: 40%; /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7)); /* Optional: add a shadow for visibility */
+}
+
+
+/* NEW: Roninmon Logo Hover Effect */
+.roninmon-logo:hover {
+    transform: scale(1.03); /* Slightly enlarge */
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6)) /* Add a brighter glow */
+            drop-shadow(0 0 25px rgba(255, 255, 255, 0.4)); /* And another layer for more intensity */
+    cursor: pointer; /* Indicate it's interactive, even if it doesn't do anything yet */
+}
+
+.subtitle {
+    /* Changed font-family to Irish Grover */
+    font-family: 'Irish Grover', cursive; 
+    font-size: 2em;
+    color: #e0e0e0; /* Light grey, adjust to match your 'FORGOTTEN LAND' color */
+    margin-top: -10px; /* Pull it closer to the logo */
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Button Styles */
+.game-button {
+    padding: 10px 12px;
+    margin: 10px 0;
+    border: 3px solid black;
+    border-radius: 10px;
+    font-size: 1.4em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.56);
+    font-family: 'Irish Grover', cursive, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px
+}
+
+/* Updated Button Hover Effect (Pressed In) */
+/* .game-button:hover {
+    transform: translateY(2px);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4); 
+} */
+
+/* Updated Button Active (Click) Effect (Deeper Press) */
+.game-button:active {
+    transform: translateY(4px); /* Moves further down */
+    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.43); /* Shadow almost disappears / flattens more */
+}
+
+.game-button.primary {
+    background-color: #0B6DA3; /* Blue, similar to "Get your Roninmon" */
+    color: white;
+}
+
+.game-button.secondary {
+    background-color: #D3BF2C; /* Yellow, similar to "Connect Wallet" */
+    color: white; /* Dark text for contrast */
+}
+
+.game-button.tertiary {
+    background-color: transparent; /* Grey, for 'Back' buttons */
+    color: white;
+}
+
+.start-button {
+    padding: 5px 5px;
+    margin: 10px 0;
+    border: 3px solid black;
+    border-radius: 10px;
+    font-size: 1.4em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.56);
+    font-family: 'Irish Grover', cursive, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px
+}
+
+.start-button.battle {
+    background-color: rgba(11, 163, 69, 1);
+    color: white;
+}
+
+.game-button.wallet {
+    background-image: linear-gradient(to bottom, #D3BF2C,#EBE5B5);
+    color: white;
+}
+
+/* Game Message Overlay */
+#game-message-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    text-align: center;
+    z-index: 1000; /* Ensure it's on top of everything */
+    opacity: 0;
+    pointer-events: none; /* Make it non-interactive when hidden */
+    transition: opacity 0.3s ease-in-out;
+    /* Also applying Irish Grover to messages */
+    font-family: 'Irish Grover', cursive, Arial, sans-serif;
+}
+
+/* Headings within game screens */
+.game-screen h1 {
+    font-family: 'Irish Grover', cursive;
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+}
+
+/* NEW: Metamask Logo within button */
+.wallet-logo {
+    height: 40px; /* Adjust size relative to font size */
+    width: 40px;
+    vertical-align: middle; /* Align with text */
+}
+
+/* NEW: Modal Overlay Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dim background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 900; /* Below game message overlay, above game screens */
+    opacity: 0;
+    pointer-events: none; /* Hidden by default */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto; /* Active when visible */
+}
+
+/* NEW: Wallet Modal Content Styles (matching loginPage.jpg) */
+#wallet-modal-content {
+    background-image: linear-gradient(to bottom, #661A38, #AE2C5F, #CC3470); 
+    /* Add a solid background-color as a fallback/base for clarity */
+    background-color: #661A38; 
+    border: 4px solid #D8C967; /* Darker border from image */
+    border-radius: 15px; /* Slightly rounded corners */
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px; /* Space between title and button */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.8); /* Stronger shadow for the modal */
+    transform: scale(0.4); /* Start slightly smaller for transition */
+    opacity: 0; /* Start hidden for transition */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal-overlay.active #wallet-modal-content {
+    transform: scale(1); /* Scale to full size when active */
+    opacity: 1;
+}
+
+/* UPDATED: Added styling for the new modal logo image */
+.modal-logo {
+    max-width: 85%; /* Adjust size as needed for the modal */
+    height: auto;
+    margin-bottom: 5px; /* Little space below it */
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.7)); /* Subtle shadow */
+}
+
+/* UPDATED: Explicitly set color for modal instruction text */
+.modal-instruction {
+    font-family: 'Irish Grover', cursive;
+    font-size: 1.3em;
+    margin-top: -5px; /* Adjusted margin slightly to fit with image */
+    margin-bottom: 5px; /* Adjusted margin slightly to fit with image */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: #e0e0e0; /* Explicitly setting a light grey color */
+}
+
+/* NEW: Main Menu Specific UI Elements */
+
+/* Top-Left EXIT button */
+.top-left-button {
+    position: absolute;
+    top: 20px;
+    left: 70px;
+    padding: 10px; 
+    font-size: 0; 
+    color: transparent; 
+    width: 50px; 
+    height: 50px; 
+    border: none;
+    box-shadow: none;
+}
+
+/* Overriding general button hover/active for this specific Play button */
+.top-left-button:hover {
+    transform: translateY(3px); /* Slightly deeper press */
+    box-shadow: none;
+    background-color: transparent; /* Slightly lighter pink on hover */
+}
+.top-left-button:active {
+    transform: translateY(6px); /* Even deeper press */
+    box-shadow: none;
+    background-color: transparent; /* Darker pink on click */
+}
+
+/* Top Info Cards (Player Name, Resource) */
+.game-card { /* Reusing game-card from modal for consistency in styling */
+    background-color: #CACACA; /* Slightly transparent grey */
+    border: 5px solid #474747; /* Subtle white border */
+    border-radius: 20px;
+    padding: 3px 10px;
+    display: flex;
+    align-items: center;
+    /* UPDATED: Gap between icon and text */
+    gap: 5px; /* Gap between icon and text inside the card */
+    font-family: 'Irish Grover', cursive;
+    font-size: 1.2em;
+    color: black;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+/* Specific styling for player/wallet info card */
+.player-wallet-info {
+    /* No need for absolute positioning here anymore, as it's in top-right-info-group */
+    min-width: 150px; /* Ensure a minimum width */
+    justify-content: center; /* Center content horizontally */
+}
+
+/* Specific styling for resource info card */
+.resource-info {
+    /* No need for absolute positioning here anymore */
+    height: 100;
+    width: 150px; /* Ensure a minimum width */
+    justify-content: center;
+}
+
+.info-icon {
+    /* Fixed pixel dimensions for consistent size and prominence */
+    right: 40;
+    height: 28px; /* Slightly larger than before */
+    width: 28px;  /* Ensure it's square */
+    object-fit: contain; 
+}
+
+.top-center-info {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 150px; /* Ensure a minimum width */
+    justify-content: center; /* Center content horizontally */
+}
+
+.top-right-info {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    display: flex; /* Ensure a minimum width */
+    align-items: center;
+    gap: 60px;
+}
+
+/* Left Sidebar Buttons */
+.left-sidebar {
+    position: absolute;
+    
+    left: 75px;
+    bottom: -120px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Space between sidebar buttons */
+}
+
+.sidebar-icon {
+    width: 180%; /* Icon fills most of the button */
+    height: 180%;
+    object-fit: contain; /* Ensure icon scales nicely */
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.7)); /* Shadow for icon */
+}
+
+.sidebar-icon-button {
+    width: 60px; /* Fixed width for circular/oval shape */
+    height: 60px; /* Fixed height */
+    padding: 0; /* Remove button padding to let icon fill */
+    border-radius: 50%; /* Make it circular */
+    background-color: transparent; /* Blue with some transparency */
+    border: 2px solid black;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.5);
+    /* Override game-button flex to ensure icon is centered inside */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Ensure only icon scales, not the button */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.sidebar-icon-button:hover {
+    background-color: #3498db; /* Solid blue on hover */
+    transform: translateY(1px); /* Slight press */
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.6);
+}
+.sidebar-icon-button:active {
+    background-color: #2980b9; /* Darker blue on click */
+    transform: translateY(3px); /* Deeper press */
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.7);
+}
+
+
+/* UPDATED: Bottom-Right Play Button */
+.bottom-right-button {
+    position: absolute;
+    bottom: 10px; 
+    right: 100px; 
+    padding: 20px; 
+    /* UPDATED: Hide text by making it transparent, not by setting font-size:0 */
+    color: white; 
+    /* REMOVED: font-size: 0; */
+    border-radius: 40px; 
+    background-color: transparent; 
+    text-shadow: none; 
+    box-shadow: none; 
+    width: 120px; 
+    height: 120px; 
+    border: none;
+}
+
+/* Overriding general button hover/active for this specific Play button */
+.bottom-right-button:hover {
+    transform: translateY(3px); /* Slightly deeper press */
+    box-shadow: none;
+    background-color: transparent; /* Slightly lighter pink on hover */
+}
+.bottom-right-button:active {
+    transform: translateY(6px); /* Even deeper press */
+    box-shadow: none;
+    background-color: transparent; /* Darker pink on click */
+}
+
+/* NEW: General image styling for buttons that only contain an image */
+.button-img {
+    height: 24px; /* Default icon size, can be overridden */
+    width: 24px;
+    object-fit: contain;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.7));
+}
+
+.button-img.small-icon {
+    /* UPDATED: Ensures the 'X' icon is small and fits the button */
+    height: 24px;
+    width: 24px; 
+}
+
+.button-img.medium-icon {
+    height: 100px;
+    width: 100px; 
+}
+
+.button-img.large-icon {
+    height: 250px;
+    width: 250px;
+}
+
+/* UPDATED: Modal Exit Button Styling - Remove all box-shadows and prepare for image filter transition */
+.modal-exit-button {
+    position: absolute;
+    top: 10px;
+    right: 10px; 
+    padding: 8px; 
+    border-radius: 100px; 
+    background-color: transparent; 
+    color: transparent; 
+    z-index: 1; 
+    width: 30px; 
+    height: 30px; 
+    justify-content: center; 
+    align-items: center; 
+    border: 2px solid #D8C967; 
+    /* NEW: Remove default box-shadow */
+    box-shadow: none; 
+    border: none;
+    /* UPDATED: Only transition transform for the button itself */
+    transition: transform 0.2s ease-in-out; 
+}
+
+/* Adjust hover/active for modal exit button */
+.modal-exit-button:hover {
+    transform: translateY(1px);
+    /* UPDATED: Remove box-shadow from hover state */
+    box-shadow: none; 
+    /* Ensure background is truly transparent on hover */
+    background-color: transparent; 
+}
+.modal-exit-button:active {
+    transform: translateY(2px);
+    /* UPDATED: Remove box-shadow from active state */
+    box-shadow: none; 
+    /* Ensure background is truly transparent on active */
+    background-color: transparent; 
+}
+
+/* NEW: Style for the image INSIDE the modal exit button */
+.modal-exit-button img {
+    /* Add transition for filter effect on the image */
+    transition: filter 0.2s ease-in-out; 
+}
+
+/* NEW: Hover effect for the image INSIDE the modal exit button */
+.modal-exit-button:hover img {
+    filter: brightness(1.3); /* Brighten the image */
+}
+
+/* NEW: Active effect for the image INSIDE the modal exit button */
+.modal-exit-button:active img {
+    filter: brightness(0.7); /* Slightly dim the image on click */
+}
+
+/* Monster Page Specific UI Elements */
+
+/* TV Screen Container */
+.tv-screen-container {
+    position: absolute;
+    top: 53%;
+    left: 50px;
+    transform: translateY(-50%);
+    width: 480px; 
+    /* max-width: 500px;  */
+    height: 400px; 
+    /* max-height: 400px;  */
+    background-image: linear-gradient(to right, #757575, #DBDBDB);
+    background-color: #dedede; 
+    border: 4px solid #474747; 
+    border-radius: 20px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    padding-bottom: 15px; 
+    padding: 20px 20px 15px 20px;
+}
+
+/* Main TV Screen Display Area */
+#tvScreenDisplay { /* Targeted by ID now for JS changes */
+    width: calc(100% - 40px); 
+    height: calc(100% - 150px);  /* Height minus controls area */
+    background-color: #CC3470; 
+    border: 3px solid #474747; /* Dark inner screen background */
+    border-radius: 10px;
+    /* REMOVED: margin from here as padding on parent handles it */
+    overflow: hidden; 
+    display: flex; /* For centering content (monster, static) */
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For absolute positioning of static and overlay */
+    transition: filter 0.3s ease-in-out;
+}
+
+/* .tv-screen-display {
+    width: calc(100% - 1000px); 
+    height: calc(100% - 150px); 
+    background-color: #CC3470; 
+    border: 3px solid #474747;
+    border-radius: 10px;
+    margin: 20px 20px 0 20px; 
+    overflow: hidden; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+} */
+
+.tv-static-effect {
+    position: absolute; /* Position over content */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    /* Fix: background-image was invalid CSS property */
+    /* REMOVED: background-image: #CC3470; */ 
+    opacity: 0.8; 
+        /* NEW: Manage visibility with opacity and pointer-events */
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: auto; /* Active by default */
+}
+
+/* NEW: Container for dynamic monster info (overlays static/image) */
+.tv-monster-info-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px; 
+    box-sizing: border-box;
+    /* NEW: Hidden by default, JS will show this by updating its content */
+    opacity: 0; 
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Inactive by default */
+}
+
+/* NEW: Monster Image inside TV */
+.tv-monster-image {
+    max-width: 90%; 
+    max-height: 70%; 
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.7));
+    margin-top: 10px; /* Space from top */
+}
+
+/* NEW: Monster ID/Name on TV */
+.monster-tv-id {
+    font-family: 'Irish Grover', cursive;
+    font-size: 1.8em;
+    color: white; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    margin-top: auto; 
+    margin-bottom: 5px; 
+}
+
+/* NEW: Energy Bar Container */
+.energy-bar-container {
+    width: 80%;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.4); 
+    border-radius: 7px;
+    overflow: hidden; 
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    position: relative; 
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5); 
+}
+
+/* NEW: Energy Bar Fill */
+.energy-bar-fill {
+    height: 100%;
+    width: 0%; /* Start at 0, JS will set actual width */
+    background-color: #ff0077; 
+    transition: width 0.3s ease-out; 
+}
+
+/* NEW: Energy Text (e.g., 50/100) */
+.energy-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: Arial, sans-serif; 
+    font-size: 0.8em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+/* NEW: Energy Rate Text (e.g., 5 energy/hour) */
+.energy-rate-text {
+    font-family: 'Irish Grover', cursive;
+    font-size: 1em;
+    color: #e0e0e0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    margin-top: 5px; 
+    margin-bottom: 10px; 
+}
+
+
+/* UPDATED: TV Screen Controls (bottom bar for buttons) */
+.tv-screen-controls {
+    width: 100%; /* Fill parent width */
+    height: 55px; /* Fixed height for the control bar */
+    background-color: #4a4a4a; /* Darker grey background for the bar itself */
+    border-top: 2px solid #5a5a5a; /* Separator line */
+    border-bottom-left-radius: 10px; /* Match container bottom radius */
+    border-bottom-right-radius: 10px; /* Match container bottom radius */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertically center buttons */
+    gap: 25px; /* Gap between buttons */
+    padding-top: 0; /* Remove previous padding-top */
+}
+
+.tv-screen-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 10px; 
+}
+
+.tv-control-button {
+    position: absolute;
+    top: 305px;
+    right: 50px;
+    width: 25px; /* Wider for rounded rectangle */
+    height: 25px; /* Fixed height */
+    border-radius: 12px; /* Half of height for rounded rectangle */
+    border: 1px solid #333;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+.tv-control-button:hover {
+    transform: translateY(1px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+.tv-control-button:active {
+    transform: translateY(2px);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.7); 
+}
+
+.tv-control-button.red-button {
+    background-color: #e74c3c; 
+}
+.tv-control-button.green-button {
+    background-color: #2ecc71; 
+}
+
+
+/* Right Monster Grid Container */
+.monster-grid-container {
+    position: absolute;
+    top: 55%;
+    right: 50px;
+    transform: translateY(-50%);
+    width: 400px; 
+    /* max-width: 500px;  */
+    height: 450px; 
+    /* max-height: 400px;  */
+    background-color: rgba(204, 52, 112, 0.64); 
+    border: 3px solid #474747; 
+    border-radius: 20px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.7);
+    padding: 20px; 
+    box-sizing: border-box; 
+}
+
+.monster-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    grid-template-rows: repeat(4, 1fr); 
+    gap: 15px; 
+    width: 100%;
+    height: 100%;
+}
+
+.monster-slot {
+    background-image: linear-gradient(to bottom, #661A38, #CC3470);
+    background-color: rgba(180, 180, 180, 0.2); 
+    border: 1px solid #D3BF2C; 
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+    position: relative; 
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+.monster-slot:hover {
+    transform: scale(1.05); 
+    background-color: rgba(180, 180, 180, 0.4); 
+}
+.monster-slot:active {
+    transform: scale(0.98); 
+    background-color: rgba(180, 180, 180, 0.6); 
+}
+
+.monster-slot img {
+    width: 80%; 
+    height: 80%;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.6)); 
+}
+
+.monster-slot.empty-slot {
+    background-color: rgba(100, 100, 100, 0.1); 
+    border-style: dashed; 
+}
