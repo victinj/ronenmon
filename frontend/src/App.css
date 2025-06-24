@@ -17,15 +17,6 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
-.gradient-background {
-  width: 100%; /* Or any specific width you need */
-  min-height: 100vh; /* Example: make it cover the full viewport height */
-  padding: 20px; /* Optional: for content inside */
-  color: white; /* Example text color, adjust as needed */
-
-  /* The gradient background */
-  background-image: linear-gradient(180deg, #661A38 0%, #AD2C5F 60.58%, #CC3470 100%);
-}
 
 @keyframes logo-spin {
   from {
