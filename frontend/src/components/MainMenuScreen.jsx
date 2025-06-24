@@ -36,7 +36,7 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
   };
 
   return (
-    <div 
+<div 
       id="main-menu-screen" 
       className="game-screen active bg-transparent block p-0" 
     >
@@ -44,57 +44,51 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
       <button 
         id="exitBtn" 
         onClick={handleExit}
+        // UPDATED: Removed hover/active classes and transition
         className="group absolute top-20px left-70px px-4 py-2 flex items-center gap-2 
                    text-white text-base font-irish-grover 
-                   border-none shadow-none transition-all duration-200 ease-in-out
-                   hover:translate-y-3px active:translate-y-6px"
+                   border-none shadow-none"
       >
         <img src={exitButtonSrc} alt="Exit" 
-             className="w-10 h-10 object-contain drop-shadow-icon-base
-                        transition-filter duration-200 ease-in-out
-                        group-hover:brightness-130 group-active:brightness-70"
+             // UPDATED: Removed hover/active classes and transition
+             className="w-10 h-10 object-contain drop-shadow-icon-base"
         />
-        <span className="font-irish-grover text-1-4em">EXIT</span>
+        <span>EXIT</span>
       </button>
 
-      {/* Top Right Info Group */}
-      <div className="absolute top-30px right-20px flex items-center gap-60px">
-        {/* Player Wallet Info Card */}
-        <div className="px-10px py-3px rounded-md-card bg-game-card-bg border-5 border-game-card-border shadow-[0_2px_5px_rgba(0,0,0,0.4)] text-black flex items-center gap-5px font-irish-grover text-1-2em min-w-[150px] justify-center">
-          <img src={logoWalletSrc} alt="Player Icon" className="h-7 w-7 object-contain" />
+      {/* UPDATED: Top Right Info Group - Logos outside cards */}
+      <div className="absolute top-30px right-20px flex items-center gap-10px"> {/* Reduced gap for 4 items */}
+        {/* Player Wallet Info Icon (Standalone) */}
+        <img src={logoWalletSrc} alt="Player Icon" className="h-7 w-7 object-contain drop-shadow-icon-base" />
+        {/* Player Wallet Info Card (Text Only) */}
+        <div className="px-10px py-3px rounded-md-card bg-game-card-bg border-5 border-game-card-border shadow-[0_2px_5px_rgba(0,0,0,0.4)] text-black flex items-center justify-center font-irish-grover text-1-2em min-w-[150px]"> {/* Removed gap */}
           <span id="walletAddress">{walletAddress || '7wdaxsxia'}</span>
         </div>
-        {/* Resource Info Card */}
-        <div className="px-10px py-3px rounded-md-card bg-game-card-bg border-5 border-game-card-border shadow-[0_2px_5px_rgba(0,0,0,0.4)] text-black flex items-center gap-5px font-irish-grover text-1-2em w-[150px] h-auto justify-center">
-          <img src={logoCoinSrc} alt="Resource Icon" className="h-7 w-7 object-contain" />
+        {/* Resource Info Icon (Standalone) */}
+        <img src={logoCoinSrc} alt="Resource Icon" className="h-7 w-7 object-contain drop-shadow-icon-base" />
+        {/* Resource Info Card (Text Only) */}
+        <div className="px-10px py-3px rounded-md-card bg-game-card-bg border-5 border-game-card-border shadow-[0_2px_5px_rgba(0,0,0,0.4)] text-black flex items-center justify-center font-irish-grover text-1-2em w-[150px] h-auto"> {/* Removed gap */}
           <span id="resourceCount">{resourceCount || '200'}</span>
         </div>
       </div>
 
-      {/* UPDATED: Left Sidebar Buttons - Now with Outer/Inner Circle structure */}
-      <div className="absolute left-75px bottom-[-120px] transform -translate-y-1/2 flex flex-col gap-40px">
+      {/* UPDATED: Left Sidebar Buttons - Adjusted size, position, and removed all hovers */}
+      <div className="absolute left-20px bottom-20px flex flex-col gap-20px"> {/* Adjusted position and gap */}
         {/* Incubator Button */}
         <button 
           id="incubatorBtn" 
           onClick={handleIncubator}
-          // Outer circle: Fixed size, rounded-full, base transparent, border, shadow
-          // Added 'group' class for inner element hover effects
-          className="group relative w-60px h-60px p-0 rounded-full 
+          // UPDATED: Sidebar button dimensions and removed all hovers and transitions
+          className="group relative w-sidebar-btn-w h-sidebar-btn-h p-0 rounded-full 
                      bg-gradient-to-t from-sidebar-inner-second to-sidebar-inner-first shadow-sidebar-btn-base 
-                     flex justify-center items-center cursor-pointer transition-all duration-200 ease-in-out 
-                     hover:translate-y-0.5 hover:shadow-sidebar-btn-hover 
-                     active:translate-y-1.5 active:shadow-sidebar-btn-active"
+                     flex justify-center items-center cursor-pointer"
         >
-          {/* Inner Circle: Inset, rounded-full, default background, flex for logo centering */}
+          {/* Inner Circle */}
           <div className="absolute inset-sidebar-inner-inset rounded-full 
                           bg-gradient-to-t from-sidebar-inner-first to-sidebar-inner-second
-                          flex justify-center items-center overflow-hidden
-                          transition-colors duration-200 ease-in-out
-                          group-hover:bg-[#3498db] group-active:bg-[#2980b9]">
+                          flex justify-center items-center overflow-hidden">
             <img src={incubatorButtonSrc} alt="Incubator" 
-                 className="w-70% h-70% object-contain drop-shadow-icon-base
-                            transition-filter duration-200 ease-in-out
-                            group-hover:brightness-130 group-active:brightness-70" />
+                 className="w-[60px] h-[60px]object-contain drop-shadow-icon-base" />
           </div>
         </button>
 
@@ -102,21 +96,15 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
         <button 
           id="inventoryBtn" 
           onClick={handleInventory}
-          className="group relative w-60px h-60px p-0 rounded-full 
+          className="group relative w-sidebar-btn-w h-sidebar-btn-h p-0 rounded-full 
                      bg-gradient-to-t from-sidebar-inner-second to-sidebar-inner-first shadow-sidebar-btn-base 
-                     flex justify-center items-center cursor-pointer transition-all duration-200 ease-in-out 
-                     hover:translate-y-0.5 hover:shadow-sidebar-btn-hover 
-                     active:bg-[#2980b9] active:translate-y-1.5 active:shadow-sidebar-btn-active"
+                     flex justify-center items-center cursor-pointer"
         >
           <div className="absolute inset-sidebar-inner-inset rounded-full 
                           bg-gradient-to-t from-sidebar-inner-first to-sidebar-inner-second
-                          flex justify-center items-center overflow-hidden
-                          transition-colors duration-200 ease-in-out
-                          group-hover:bg-[#3498db] group-active:bg-[#2980b9]">
+                          flex justify-center items-center overflow-hidden">
             <img src={inventoryButtonSrc} alt="Inventory" 
-                 className="w-70% h-70% object-contain drop-shadow-icon-base
-                            transition-filter duration-200 ease-in-out
-                            group-hover:brightness-130 group-active:brightness-70" />
+                 className="w-[60px] h-[60px] object-contain drop-shadow-icon-base" />
           </div>
         </button>
 
@@ -124,22 +112,16 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
         <button 
           id="walletPageSidebarBtn" 
           onClick={handleWalletPage}
-          className="group relative w-60px h-60px p-0 rounded-full 
+          className="group relative w-sidebar-btn-w h-sidebar-btn-h p-0 rounded-full 
                      bg-gradient-to-t from-sidebar-inner-second to-sidebar-inner-first 
                      shadow-sidebar-btn-base 
-                     flex justify-center items-center cursor-pointer transition-all duration-200 ease-in-out 
-                     hover:translate-y-0.5 hover:shadow-sidebar-btn-hover 
-                     active:bg-[#2980b9] active:translate-y-1.5 active:shadow-sidebar-btn-active"
+                     flex justify-center items-center cursor-pointer"
         >
           <div className="absolute inset-sidebar-inner-inset rounded-full 
                           bg-gradient-to-t from-sidebar-inner-first to-sidebar-inner-second
-                          flex justify-center items-center overflow-hidden
-                          transition-colors duration-200 ease-in-out
-                          group-hover:bg-[#3498db] group-active:bg-[#2980b9]">
+                          flex justify-center items-center overflow-hidden">
             <img src={walletButtonSrc} alt="Wallet" 
-                 className="w-100% h-100% object-contain drop-shadow-icon-base
-                            transition-filter duration-200 ease-in-out
-                            group-hover:brightness-130 group-active:brightness-70" />
+                 className="w-[50px] h-[50px] object-contain drop-shadow-icon-base" />
           </div>
         </button>
       </div>
