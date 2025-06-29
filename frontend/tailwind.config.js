@@ -43,6 +43,7 @@ export default {
         'play-inner-shadow-color-drop': '#494A58',
         'sidebar-inner-first': '#646464', 
         'sidebar-inner-second': '#CACACA', 
+        'play-inner-border': '#494A58'
       },
       boxShadow: { 
         'button-default': '0px 10px 10px rgba(0, 0, 0, 0.56)',
@@ -60,6 +61,7 @@ export default {
         'play-subtle-shadow': '0px 2px 5px rgba(0,0,0,0.4)',
         'play-inner-hover': '0 4px 8px rgba(0,0,0,0.6)',
         'play-inner-active': 'inset 0 2px 4px rgba(0,0,0,0.7)',
+        'play-inner-inset': 'inset 0 -10px 15px -3px rgba(0, 0, 0, 0.25)'
       },
       dropShadow: { 
         'icon-base': '1px 1px 2px rgba(0,0,0,0.7)',
@@ -127,7 +129,33 @@ export default {
         '2em': '2em',
         '3em': '3em',
         '4em': '4em',
+        '5em': '5em',
+        '6em': '6em',
+        '7em': '7em',
+        '8em': '8em',
+        '9em': '9em',
+        '10em': '10em',
         'text-base': '1rem', 
+      },
+      // NEW: Add a custom text-stroke utility
+      textStroke: {
+        '1': '1px',
+        '2': '2px',
+        '3': '3px',
+        '4': '4px',
+        '5': '5px',
+        '6': '6px'
+      },
+      textStrokeColor: {
+        'black': '#000000',
+        'white': '#ffffff',
+        'yellow-border': '#D8C967', // A color from your WalletModal
+        // You can add more custom colors here
+      },
+      textShadow: {
+        'heavy': '0px 0px 2px rgba(0, 0, 0, 1), 0px 0px 2px rgba(0, 0, 0, 1), 0px 0px 2px rgba(0, 0, 0, 1)',
+        'glow': '0 0 5px rgba(255,255,255,0.7), 0 0 10px rgba(255,255,255,0.5)',
+        'none': 'none',
       },
     },
   },
@@ -138,22 +166,40 @@ export default {
         { values: theme('textShadow') }
       );
     },
-    function ({ addUtilities, theme }) {
-      addUtilities({
-        '.text-outline-5-black': {
-          textShadow: `
-            -5px -5px 0px black, 
-            5px -5px 0px black, 
-            -5px 5px 0px black, 
-            5px 5px 0px black,
-            -5px 0px 0px black, 
-            5px 0px 0px black, 
-            0px -5px 0px black, 
-            0px 5px 0px black
-          `,
-          '-webkit-text-stroke': '5px black',
+    // NEW: Plugin to generate the text-stroke utilities
+    function({ addUtilities, theme }) {
+      const newUtilities = {
+        '.text-shadow-md': {
+          textShadow: '0 4px 6px rgba(0, 0, 0, 0.25)',
         },
-      }, ['responsive', 'hover']);
+        // You can keep other custom utilities you have
+      };
+      
+      // Generate the text-stroke classes
+      const textStrokeUtilities = {};
+      Object.entries(theme('textStroke')).forEach(([key, value]) => {
+        Object.entries(theme('textStrokeColor')).forEach(([colorKey, colorValue]) => {
+          textStrokeUtilities[`.text-stroke-${key}-${colorKey}`] = {
+            WebkitTextStrokeWidth: value,
+            WebkitTextStrokeColor: colorValue,
+          };
+        });
+      });
+      addUtilities(textStrokeUtilities, ['responsive', 'hover']);
+
+      const textShadowUtilities = {
+              '.text-shadow-heavy': { textShadow: theme('textShadow.heavy') },
+              '.text-shadow-glow': { textShadow: theme('textShadow.glow') },
+              '.text-shadow-none': { textShadow: theme('textShadow.none') },
+            };
+            addUtilities(textShadowUtilities, ['responsive']);
+
+      // Add a utility to remove default text shadow
+      addUtilities({
+        '.text-shadow-none': {
+          textShadow: 'none',
+        },
+      }, ['responsive']);
     },
   ],
 }

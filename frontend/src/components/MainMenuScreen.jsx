@@ -149,12 +149,12 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
           <div className="absolute inset-[7px] rounded-[100px] 
                           bg-play-inner-bg 
                           flex justify-center items-center 
-                          transition-all duration-200 ease-in-out 
+                          transition-none
+                          border-[4px] border-play-inner-border
                           shadow-play-inner-inset shadow-play-inner-drop 
-                          group-hover:translate-y-[-2px] group-hover:shadow-lg group-hover:shadow-play-inner-drop
-                          group-active:translate-y-[1px] group-active:shadow-play-inner-active">
+                          ">
             {/* Play Text */}
-            <span className="font-irish-grover text-4em text-play-text-color">Play</span>
+            <span className="font-irish-grover text-5em text-play-text-color text-stroke-4-black text-shadow-heavy">Play</span>
           </div>
         </div>
       </button>
