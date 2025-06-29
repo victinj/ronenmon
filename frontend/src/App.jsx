@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import LandingScreen from './components/LandingScreen';
 import WalletModal from './components/WalletModal';
-import MainMenuScreen from './components/MainMenuScreen'; // NEW: Import your MainMenuScreen component
+import MainMenuScreen from './components/MainMenuScreen'; 
+import MonsterScreen from './components/MonsterScreen';
 // Other screen imports will go here later
 // import InventoryScreen from './components/InventoryScreen';
 // import MonsterPageScreen from './components/MonsterPageScreen';
@@ -17,7 +18,7 @@ function App() {
 
   // NEW: State for player name/wallet address and resource count (globally managed)
   const [displayWalletAddress, setDisplayWalletAddress] = useState('7wdaxsxia'); 
-  const [displayResourceCount, setDisplayResourceCount] = useState('200');
+  const [displayResourceCount, setDisplayResourceCount] = useState('0');
 
   const changeScreen = (newState) => {
     setGameState(newState);
@@ -66,6 +67,15 @@ function App() {
           changeScreen={changeScreen} 
           walletAddress={displayWalletAddress} 
           resourceCount={displayResourceCount} 
+        />
+      )}
+
+      {/* NEW: Render MonsterScreen when gameState is 'monster_page */}
+      {gameState == 'monster_page' && (
+        <MonsterScreen
+          changeScreen={changeScreen}
+          walletAddress={displayWalletAddress}
+          resourceCount={displayResourceCount}
         />
       )}
 

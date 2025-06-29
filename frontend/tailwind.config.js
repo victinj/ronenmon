@@ -43,7 +43,10 @@ export default {
         'play-inner-shadow-color-drop': '#494A58',
         'sidebar-inner-first': '#646464', 
         'sidebar-inner-second': '#CACACA', 
-        'play-inner-border': '#494A58'
+        'play-inner-border': '#494A58',
+        'tv-bg-first': '#DBDBDB',
+        'tv-bg-second': "#757575",
+        'monster-bg-box': 'rgba(204, 52, 112, 0.64)'
       },
       boxShadow: { 
         'button-default': '0px 10px 10px rgba(0, 0, 0, 0.56)',
@@ -76,6 +79,7 @@ export default {
       },
       borderRadius: { 
         'sm-btn': '10px',
+        'sm-mdl': '15px',
         'md-card': '20px',
         'lg-btn': '40px',
         'full-circle': '50%',
