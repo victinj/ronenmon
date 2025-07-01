@@ -1,4 +1,5 @@
 import React from 'react';
+import PlayerInfoCard from './PlayerInfoCard';
 
 function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
   // Asset paths (ensure these are in your public/assets folder)
@@ -36,44 +37,48 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
   };
 
   return (
-<div 
+    <div 
       id="main-menu-screen" 
-      className="game-screen active bg-transparent block p-0" 
-    >
-      {/* Top-Left EXIT button with text */}
-      <button 
-        id="exitBtn" 
-        onClick={handleExit}
-        // UPDATED: Removed hover/active classes and transition
-        className="group absolute top-20px left-70px px-4 py-2 flex items-center gap-2 
-                   text-white text-base font-irish-grover 
-                   border-none shadow-none"
+      className="game-screen active bg-transparent block p-0"
       >
-        <img src={exitButtonSrc} alt="Exit" 
-             // UPDATED: Removed hover/active classes and transition
-             className="w-10 h-10 object-contain drop-shadow-icon-base"
-        />
-        <span>EXIT</span>
-      </button>
+      <div className="absolute top-50px left-50px flex items-center">
+        {/* Top Left Exit Button with text */}
+        <button 
+          id="exitBtn" 
+          onClick={handleExit}
+          className="group px-4 py-2 flex items-center gap-2 
+                    text-white text-1-5em font-irish-grover 
+                    border-none shadow-none"
+        >
+          <img src={exitButtonSrc} alt="Exit" 
+              className="w-12 h-12 object-contain drop-shadow-icon-base"
+          />
+          <span>EXIT</span>
+        </button>
+      </div>
+      <div>
+        <div className='absolute top-50px right-50px flex items-center gap-50px'>
+          {/* Wallet Address*/}
+          <div className='flex items-center gap-10px'>
+            {/* Player Wallet Info Icon (Standalone) */}
+            <img src={logoWalletSrc} alt="Player Icon" className="h-11 w-11 object-contain drop-shadow-icon-base" />
+            {/* Player Wallet Info Card (Text Only) */}
+            <PlayerInfoCard value={walletAddress || '7wdaxsxia'} isWallet={true}/>
+          </div>
 
-      {/* UPDATED: Top Right Info Group - Logos outside cards */}
-      <div className="absolute top-30px right-20px flex items-center gap-10px"> {/* Reduced gap for 4 items */}
-        {/* Player Wallet Info Icon (Standalone) */}
-        <img src={logoWalletSrc} alt="Player Icon" className="h-7 w-7 object-contain drop-shadow-icon-base" />
-        {/* Player Wallet Info Card (Text Only) */}
-        <div className="px-10px py-3px rounded-md-card bg-game-card-bg border-5 border-game-card-border shadow-[0_2px_5px_rgba(0,0,0,0.4)] text-black flex items-center justify-center font-irish-grover text-1-2em min-w-[150px]"> {/* Removed gap */}
-          <span id="walletAddress">{walletAddress || '7wdaxsxia'}</span>
-        </div>
-        {/* Resource Info Icon (Standalone) */}
-        <img src={logoCoinSrc} alt="Resource Icon" className="h-7 w-7 object-contain drop-shadow-icon-base" />
-        {/* Resource Info Card (Text Only) */}
-        <div className="px-10px py-3px rounded-md-card bg-game-card-bg border-5 border-game-card-border shadow-[0_2px_5px_rgba(0,0,0,0.4)] text-black flex items-center justify-center font-irish-grover text-1-2em w-[150px] h-auto"> {/* Removed gap */}
-          <span id="resourceCount">{resourceCount || '200'}</span>
+          {/* Coin Resource */}
+          <div className='flex items-center gap-10px'>
+            {/* Resource Info Icon (Standalone) */}
+            <img src={logoCoinSrc} alt="Resource Icon" className="h-11 w-11 object-contain drop-shadow-icon-base" />
+            {/* Resource Info Card (Text Only) */}
+            <PlayerInfoCard value={resourceCount || '0'} />
+          </div>
         </div>
       </div>
 
+
       {/* UPDATED: Left Sidebar Buttons - Adjusted size, position, and removed all hovers */}
-      <div className="absolute left-20px bottom-20px flex flex-col gap-20px"> {/* Adjusted position and gap */}
+      <div className="absolute left-70px bottom-50px flex flex-col gap-20px"> {/* Adjusted position and gap */}
         {/* Incubator Button */}
         <button 
           id="incubatorBtn" 
@@ -84,11 +89,11 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
                      flex justify-center items-center cursor-pointer"
         >
           {/* Inner Circle */}
-          <div className="absolute inset-sidebar-inner-inset rounded-full 
+          <div className="absolute inset-sidebar-inner-inset rounded-full border-[1px] border-[#696969]
                           bg-gradient-to-t from-sidebar-inner-first to-sidebar-inner-second
                           flex justify-center items-center overflow-hidden">
             <img src={incubatorButtonSrc} alt="Incubator" 
-                 className="w-[60px] h-[60px]object-contain drop-shadow-icon-base" />
+                 className="w-[67px] h-[70px]object-contain drop-shadow-icon-base" />
           </div>
         </button>
 
@@ -100,11 +105,11 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
                      bg-gradient-to-t from-sidebar-inner-second to-sidebar-inner-first shadow-sidebar-btn-base 
                      flex justify-center items-center cursor-pointer"
         >
-          <div className="absolute inset-sidebar-inner-inset rounded-full 
+          <div className="absolute inset-sidebar-inner-inset rounded-full border-[1px] border-[#696969]
                           bg-gradient-to-t from-sidebar-inner-first to-sidebar-inner-second
                           flex justify-center items-center overflow-hidden">
             <img src={inventoryButtonSrc} alt="Inventory" 
-                 className="w-[60px] h-[60px] object-contain drop-shadow-icon-base" />
+                 className="w-[70px] h-[70px] object-contain drop-shadow-icon-base" />
           </div>
         </button>
 
@@ -117,11 +122,11 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
                      shadow-sidebar-btn-base 
                      flex justify-center items-center cursor-pointer"
         >
-          <div className="absolute inset-sidebar-inner-inset rounded-full 
+          <div className="absolute inset-sidebar-inner-inset rounded-full border-[1px] border-[#696969]
                           bg-gradient-to-t from-sidebar-inner-first to-sidebar-inner-second
                           flex justify-center items-center overflow-hidden">
             <img src={walletButtonSrc} alt="Wallet" 
-                 className="w-[50px] h-[50px] object-contain drop-shadow-icon-base" />
+                 className="w-[70px] h-[70px] object-contain drop-shadow-icon-base" />
           </div>
         </button>
       </div>
@@ -131,7 +136,7 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
         id="playBtn" 
         onClick={handlePlay}
         // Corrected positioning to bottom-right, explicitly canceling top/left
-        className="group !absolute bottom-[10px] right-[100px]  w-[250px] h-[100px] rounded-[100px] 
+        className="group !absolute bottom-[50px] right-[50px] w-[300px] h-[120px] rounded-[100px] 
                    bg-gradient-to-b from-play-outer-light to-play-outer-dark 
                    border-none shadow-play-subtle-shadow 
                    relative flex justify-center items-center cursor-pointer 
@@ -141,20 +146,20 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
                   "
       >
         {/* Middle Rectangle */}
-        <div className="absolute inset-[7px] rounded-[100px] 
+        <div className="absolute inset-[9px] rounded-[100px] 
                         bg-gradient-to-t from-play-middle-grad-end to-play-middle-grad-start 
                         flex justify-center items-center 
                         transition-all duration-200 ease-in-out">
           {/* Inner Box */}
-          <div className="absolute inset-[7px] rounded-[100px] 
+          <div className="absolute inset-[8px] rounded-[100px] 
                           bg-play-inner-bg 
                           flex justify-center items-center 
                           transition-none
-                          border-[4px] border-play-inner-border
+                          border-[3px] border-play-inner-border
                           shadow-play-inner-inset shadow-play-inner-drop 
                           ">
             {/* Play Text */}
-            <span className="font-irish-grover text-5em text-play-text-color text-stroke-4-black text-shadow-heavy">Play</span>
+            <span className="font-irish-grover text-3-8em text-play-text-color font-bold-[4px] text-stroke-4-black">Play</span>
           </div>
         </div>
       </button>

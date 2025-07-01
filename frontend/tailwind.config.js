@@ -64,7 +64,7 @@ export default {
         'play-subtle-shadow': '0px 2px 5px rgba(0,0,0,0.4)',
         'play-inner-hover': '0 4px 8px rgba(0,0,0,0.6)',
         'play-inner-active': 'inset 0 2px 4px rgba(0,0,0,0.7)',
-        'play-inner-inset': 'inset 0 -10px 15px -3px rgba(0, 0, 0, 0.25)'
+        'play-inner-inset': 'inset 0 -10px 15px -3px rgba(0, 0, 0, 0.70)'
       },
       dropShadow: { 
         'icon-base': '1px 1px 2px rgba(0,0,0,0.7)',
@@ -119,10 +119,10 @@ export default {
         'play-mid-w': '200px',
         'play-mid-h': '80px',
         'play-inner-inset': '2px', 
-        'sidebar-inner-inset': '5px', 
+        'sidebar-inner-inset': '10px', 
         // NEW: Sidebar button dimensions
-        'sidebar-btn-w': '80px',
-        'sidebar-btn-h': '80px',
+        'sidebar-btn-w': '115px',
+        'sidebar-btn-h': '115px',
       },
       fontSize: { 
         '1-2em': '1.2em',
@@ -132,6 +132,7 @@ export default {
         '1-8em': '1.8em',
         '2em': '2em',
         '3em': '3em',
+        '3-8em': '3.8em',
         '4em': '4em',
         '5em': '5em',
         '6em': '6em',
@@ -148,7 +149,11 @@ export default {
         '3': '3px',
         '4': '4px',
         '5': '5px',
-        '6': '6px'
+        '6': '6px',
+        'paint-order': 'stroke fill'
+      },
+      textOutsideStroke: {
+        'paint-order': 'stroke fill'
       },
       textStrokeColor: {
         'black': '#000000',
