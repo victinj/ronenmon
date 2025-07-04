@@ -19,7 +19,7 @@ export default {
         'modal-gradient-mid': '#AE2C5F',
         'modal-gradient-light': '#CC3470',
         'exit-btn-border': '#D8C967',
-        'tv-border-dark': '#666',
+        'tv-border': '#474747',
         'tv-bg-light': '#dedede',
         'tv-controls-bg': '#4a4a4a',
         'tv-control-red': '#e74c3c',
@@ -46,7 +46,11 @@ export default {
         'play-inner-border': '#494A58',
         'tv-bg-first': '#DBDBDB',
         'tv-bg-second': "#757575",
-        'monster-bg-box': 'rgba(204, 52, 112, 0.64)'
+        'monster-bg-box': 'rgba(204, 52, 112, 0.64)',
+        'red-button': '#CC3470',
+        'green-button': '#59FF47',
+        'bar-progress' : '#D9D9D9',
+        'blue-selected': '#3EA8E3'
       },
       boxShadow: { 
         'button-default': '0px 10px 10px rgba(0, 0, 0, 0.56)',

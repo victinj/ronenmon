@@ -84,78 +84,92 @@ function MonsterScreen({ changeScreen, walletAddress, resourceCount }) {
         </div>
       </div>
 
-      {/* Main Content Area: Television and Monster Selection */}
-      <div className="width-[100] height-[100] flex flex-grow mt-24 mb-5 mx-auto w-[95%] max-w-[1400px] gap-60">
-        {/* Left Box: Television Display - REVAMPED */}
-        <div className="relative w-2/5 min-w-[400px] h-[470px] bg-gradient-to-r from-tv-bg-second to-tv-bg-first border-[6px] border-[#474747] rounded-3xl p-6 flex flex-col justify-center items-center shadow-lg">
-          {/* TV Screen Area */}
-          <div className="relative w-full h-[70%] bg-[#CC3470] rounded-lg overflow-hidden border-[3px] border-[#474747]">
-            {selectedMonster ? (
-              // Display selected monster IMAGE ONLY
-              <div className="absolute inset-0 flex flex-col justify-center items-center p-4 bg-[#CC3470] text-white">
-                <img src={selectedMonster.image} alt={selectedMonster.name} className="w-60 h-60 object-contain mb-4" />
-              </div>
-            ) : (
-              // Display TV static if no monster selected
-              <img src={tvStaticGif} alt="TV Static" className="w-full h-full object-cover" />
-            )}
+      {/* Main Content Area: Television */}
+      <div className='absolute left-[50px] top-[130px] flex items-center'>
+        {/* Tv Display */}
+        <div className='relative w-[550px] h-[480px] bg-gradient-to-r from-tv-bg-second to-tv-bg-first
+                        border-[6px] border-tv-border rounded-3xl flex flex-col justify-between items-center'
+        >
+          {/* Tv Area */}
+          <div className='absolute top-6 w-[93%] h-[70%] bg-modal-gradient-light rounded-3xl flex flex-col
+                           border-[3px] border-tv-border overflow-hidden'
+          >
+            {
+              selectedMonster ? (
+                // Display selected monster Image Only
+                <div className='absolute inset-0 flex flex-col justify-center items-center p-4 bg-modal-gradient-light text-white'>
+                  <img src={selectedMonster.image} alt={selectedMonster.name} className='w-60 h-60 object-contain mb4'/>
+                </div>
+              ) : (
+                // Display Tv static If no Monster Selected
+                 <img src={tvStaticGif} alt='TV Static' className='w-full h-full object-cover'/>
+              )
+            }
           </div>
 
-          {/* TV Controls (Stylized - non-functional, now displays monster info) */}
-          <div className="flex flex-col justify-center items-center w-full mt-6">
+          {/* Non Functional Red and Green Button - Now independently positioned */}
+          <div className='absolute bottom-[70px] right-[40px] flex items-center gap-15px'>
+            <div className='bg-red-button w-7 h-7 border-[1px] border-black rounded-full'></div>
+            <div className='bg-green-button w-7 h-7 border-[1px] border-black rounded-full'></div>
+          </div>
+
+          <div className='absolute bottom-[-15px] w-full flex flex-col items-center gap-2px'> {/* Adjusted positioning */}
             {selectedMonster ? (
               // Display monster details in the grey rectangle area
-              <div className="w-4/5 bg-transparent rounded-md p-4 flex flex-col items-center justify-center text-white">
-                {/* Monster ID/Name */}
-                <h3 className="font-irish-grover text-2em mb-2 text-white drop-shadow-lg">{selectedMonster.name}</h3>
+              <div className="w-4/5 bg-transparent p-4 flex flex-col items-center justify-center">
+                {/* Monster Name */}
+                <h3 className='font-irish-grover text-2em mb-2 text-white drop-shadow-lg'>
+                  {selectedMonster.name}
+                </h3>
                 {/* Energy Bar */}
-                <div className="w-80 bg-gray-300 rounded-full h-6 mb-2 border-[2px] border-black overflow-hidden relative">
-                  <div
-                    className="bg-[#CC3470] h-full"
-                    style={{ width: `${(selectedMonster.energy / selectedMonster.maxEnergy) * 100}%` }}
-                  ></div>
-                  <img src={energyIconSrc} alt="Energy" className="w-10 h-10 object-contain mr-1" />
-                  <span className="absolute inset-0 flex items-center justify-center font-bold text-sm text-black">
+                <div className='w-80 bg-bar-progress rounded-full h-6 mb-2 border-[2px] border-black overflow-hidden relative'>
+                  {/* Progress Bar */}
+                  <div className='bg-modal-gradient-light h-full rounded-full border-[2px] border-black'
+                    style={{ width: `${(selectedMonster.energy / selectedMonster.maxEnergy) * 100}%`}} // Added %
+                  >
+                  </div>
+                  {/* Energy Icon */}
+                  {/* Moved this image inside the span for better alignment with text */}
+                  <span className="absolute inset-0 flex items-center justify-center font-bold text-sm text-white">
+                    <img src={energyIconSrc} alt="Energy" className='w-6 h-6 object-contain mr-1'/> {/* Adjusted size */}
                     {selectedMonster.energy}/{selectedMonster.maxEnergy}
                   </span>
                 </div>
-                {/* Energy Per Hour */}
+                {/* Energy Information */}
                 <div className="flex items-center text-white text-lg font-irish-grover mt-1 text-stroke-paint-order">
                   <img src={energyIconSrc} alt="Energy" className="w-6 h-6 object-contain mr-1" />
                   <span>{selectedMonster.energyPerHour} energy/hour</span>
                 </div>
               </div>
             ) : (
-              // Original grey rectangle and buttons when no monster is selected
-              <>
-              
-                
-                <div className="flex gap-4 mt-4"> {/* Added margin-top for spacing */}
-                  <div className="w-8 h-8 bg-[#CC3470] border-3px border-[#000000] rounded-full"></div> {/* Red Button */}
-                  <div className="w-8 h-8 bg-[#59FF47] border-3px border-[#000000] rounded-full"></div> {/* Green Button */}
-                </div>
-                <div className="w-40 h-10 bg-[#474747] rounded-md"></div> {/* Grey Rectangle */}
-              </>
+              // Grey Rectangle placeholder when no monster is selected
+              <div className='w-40 h-12 bg-tv-border rounded-md'>
+              </div>
             )}
           </div>
         </div>
+      </div>
 
-        {/* Right Box: Monster Selection Grid */}
-        <div className="flex-grow w-[400px] h-[470px] bg-monster-bg-box border-[6px] border-[#474747] rounded-3xl p-6 shadow-lg overflow-y-auto custom-scrollbar">
-          <div className="grid grid-cols-5 gap-6"> {/* 5 monsters per row */}
+      {/* Monster Selection */}
+      <div className='absolute right-[50px] top-[130px] flex items-center'>
+        <div className='w-[550px] h-[480px] bg-monster-bg-box 
+                        border-[6px] border-tv-border rounded-3xl 
+                        p-6 shadow-lg overflow-y-auto custom-scrollbar'>
+          <div className='grid grid-cols-5 gap-6 items-center'>
             {mockMonsters.map((monster) => (
               <div
                 key={monster.id}
                 className={`
-                  relative bg-gradient-to-t from-[#CC3470] to-[#661A38] p-4 flex flex-col items-center cursor-pointer
-                  border-2 ${selectedMonster?.id === monster.id ? 'border-blue-500' : 'border-[#D3BF2C]'}
+                  relative bg-gradient-to-t from-modal-gradient-light 
+                  to-modal-gradient-dark p-4 flex flex-col items-center 
+                  cursor-pointer border-2 
+                  ${selectedMonster?.id == monster.id ? 'border-blue-selected' : 'border-yellow-secondary-btn'}
                   transition-all duration-200 ease-in-out
                   hover:scale-105 hover:shadow-xl h-[80px] w-[80px]
                 `}
                 onClick={() => handleMonsterSelect(monster)}
               >
-                <img src={monster.image} alt={monster.name} className="w-20 h-20 object-contain mb-2" />
-                {/* REMOVED: Monster name from here as per request */}
+                <img src={monster.image} alt={monster.name} className="w-20 h-20 object-contain mb-2"/>
               </div>
             ))}
           </div>
@@ -168,7 +182,7 @@ function MonsterScreen({ changeScreen, walletAddress, resourceCount }) {
           onClick={handleBattle}
           className="px-10 py-0.5 bg-[#0BA345] text-white text-2em text-stroke-1-black font-irish-grover rounded-sm-mdl 
                     cursor-pointer font-bold
-                    border-[3px] border-black transition-all duration-200 ease-in-out shadow-[0px_10px_10px_rgba(0,0,0,0.56)] 
+                    border-[3px] border-black transition-all duration-200 ease-in-out shadow-[0px_10px_10px_rgba(0,0,0,0.9)] 
                     active:translate-y-1r"
         >
           Battle
