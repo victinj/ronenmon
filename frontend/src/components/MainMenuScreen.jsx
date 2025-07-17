@@ -1,7 +1,7 @@
 import React from 'react';
 import PlayerInfoCard from './PlayerInfoCard';
 
-function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
+function MainMenuScreen({ player, navigateTo }) {
   // Asset paths (ensure these are in your public/assets folder)
   const exitButtonSrc = '/assets/image/exitLogo.png';
   const logoWalletSrc = '/assets/image/walletLogo.png';
@@ -13,27 +13,27 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
   // Handlers for button clicks
   const handleExit = () => {
     console.log('EXIT button clicked! Returning to Landing Screen.');
-    changeScreen('landing');
+    navigateTo('landing');
   };
 
   const handleIncubator = () => {
     console.log('Incubator button clicked!');
-    changeScreen('incubator_page');
+    navigateTo('incubator');
   };
 
   const handleInventory = () => {
     console.log('Inventory button clicked! Transitioning to Inventory Screen.');
-    changeScreen('inventory'); // This is your Actual Inventory Page now
+    navigateTo('inventory');
   };
 
   const handleWalletPage = () => {
     console.log('Wallet Page sidebar button clicked! Transitioning to Wallet Page.');
-    changeScreen('wallet_page'); // This is your Wallet Page placeholder
+    navigateTo('wallet');
   };
 
   const handlePlay = () => {
     console.log('PLAY button clicked! Transitioning to Monster Page for selection.');
-    changeScreen('monster_page'); // This is your Monster Selection Page
+    navigateTo('monster');
   };
 
   return (
@@ -63,7 +63,7 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
             {/* Player Wallet Info Icon (Standalone) */}
             <img src={logoWalletSrc} alt="Player Icon" className="h-11 w-11 object-contain drop-shadow-icon-base" />
             {/* Player Wallet Info Card (Text Only) */}
-            <PlayerInfoCard value={walletAddress || '7wdaxsxia'} isWallet={true}/>
+            <PlayerInfoCard value={player?.displayAddress || '...'} isWallet={true}/>
           </div>
 
           {/* Coin Resource */}
@@ -71,7 +71,7 @@ function MainMenuScreen({ changeScreen, walletAddress, resourceCount }) {
             {/* Resource Info Icon (Standalone) */}
             <img src={logoCoinSrc} alt="Resource Icon" className="h-11 w-11 object-contain drop-shadow-icon-base" />
             {/* Resource Info Card (Text Only) */}
-            <PlayerInfoCard value={resourceCount || '0'} />
+            <PlayerInfoCard value={player?.balance.toString() || '0'} />
           </div>
         </div>
       </div>

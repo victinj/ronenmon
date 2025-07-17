@@ -13,7 +13,7 @@ const mockMonsters = [
   { id: 'm6', name: 'Yeppi', image: '/assets/image/Monster/yepi-monsterLogo.png', energy: 90, maxEnergy: 100, energyPerHour: 5 },
 ];
 
-function MonsterScreen({ changeScreen, walletAddress, resourceCount }) {
+function MonsterScreen({ player, navigateTo }) {
   // State to manage the currently selected monster
   const [selectedMonster, setSelectedMonster] = useState(null);
 
@@ -26,7 +26,7 @@ function MonsterScreen({ changeScreen, walletAddress, resourceCount }) {
 
   // Handler for Back button
   const handleBack = () => {
-    changeScreen('main_menu');
+    navigateTo('mainMenu');
     console.log('Back button clicked! Returning to Main Menu.');
   };
 
@@ -71,7 +71,7 @@ function MonsterScreen({ changeScreen, walletAddress, resourceCount }) {
             {/* Player Wallet Info Icon (Standalone) */}
             <img src={logoWalletSrc} alt="Player Icon" className="h-11 w-11 object-contain drop-shadow-icon-base" />
             {/* Player Wallet Info Card (Text Only) */}
-            <PlayerInfoCard value={walletAddress || '7wdaxsxia'} isWallet={true}/>
+            <PlayerInfoCard value={player?.displayAddress || '...'} isWallet={true}/>
           </div>
 
           {/* Coin Resource */}
@@ -79,7 +79,7 @@ function MonsterScreen({ changeScreen, walletAddress, resourceCount }) {
             {/* Resource Info Icon (Standalone) */}
             <img src={logoCoinSrc} alt="Resource Icon" className="h-11 w-11 object-contain drop-shadow-icon-base" />
             {/* Resource Info Card (Text Only) */}
-            <PlayerInfoCard value={resourceCount || '0'} />
+            <PlayerInfoCard value={player?.balance.toString() || '0'} />
           </div>
         </div>
       </div>

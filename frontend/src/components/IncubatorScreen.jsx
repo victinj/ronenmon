@@ -1,8 +1,8 @@
 import React from 'react';
 
-function IncubatorPageScreen({ changeScreen }) {
+function IncubatorScreen({ player, navigateTo }) {
     const handleBack = () => {
-        changeScreen('main_menu'); // Function to go back to the Main Menu
+        navigateTo('mainMenu'); // Function to go back to the Main Menu
     };
 
     return (
@@ -29,4 +29,4 @@ function IncubatorPageScreen({ changeScreen }) {
     );
 }
 
-export default IncubatorPageScreen;
+export default IncubatorScreen;

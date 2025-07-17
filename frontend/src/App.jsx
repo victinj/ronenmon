@@ -5,9 +5,9 @@ import LandingScreen from './components/LandingScreen';
 import MainMenuScreen from './components/MainMenuScreen';
 import MonsterScreen from './components/MonsterScreen';
 // Other screen imports can be added here as we connect them
-// import InventoryScreen from './components/InventoryScreen';
-// import IncubatorScreen from './components/IncubatorScreen';
-// import WalletScreen from './components/WalletScreen';
+import InventoryScreen from './components/InventoryScreen';
+import IncubatorScreen from './components/IncubatorScreen';
+import WalletScreen from './components/WalletScreen';
 
 function App() {
   // All our logic and state now comes from our single controller hook.
@@ -28,9 +28,12 @@ function App() {
         return <MainMenuScreen player={player} navigateTo={navigateTo} />;
       case 'monster':
         return <MonsterScreen player={player} navigateTo={navigateTo} />;
-      // Add cases for other screens here as you build them
-      // case 'inventory':
-      //   return <InventoryScreen />;
+      case 'inventory':
+        return <InventoryScreen player={player} navigateTo={navigateTo} />;
+      case 'incubator':
+        return <IncubatorScreen player={player} navigateTo={navigateTo} />;
+      case 'wallet':
+        return <WalletScreen player={player} navigateTo={navigateTo} />;
       default:
         // If the screen name is unknown, default to the landing screen.
         return <LandingScreen onConnectWallet={connectWallet} />;
