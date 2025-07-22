@@ -9,6 +9,8 @@ import InventoryScreen from './components/InventoryScreen';
 import IncubatorScreen from './components/IncubatorScreen';
 import WalletScreen from './components/WalletScreen';
 import { BrowserRouter, Route } from 'react-router-dom';
+import DepositScreen from './components/DepositScreen';
+import WithdrawScreen from './components/WithdrawScreen';
 
 export const Routes = {
   landing: "landing",
@@ -16,7 +18,9 @@ export const Routes = {
   monster: "monster",
   inventory: "inventory",
   incubator: "incubator",
-  wallet: "wallet"
+  wallet: "wallet",
+  deposit: "deposit",
+  withdraw: "withdraw"
 }
 
 function App() {
@@ -45,6 +49,10 @@ function App() {
         return <IncubatorScreen player={player} navigateTo={navigateTo} />;
       case Routes.wallet:
         return <WalletScreen player={player} navigateTo={navigateTo} />;
+      case Routes.deposit:
+        return <DepositScreen player={player} navigateTo={navigateTo} />;
+      case Routes.withdraw:
+        return <WithdrawScreen player={player} navigateTo={navigateTo} />;
       default:
         // If the screen name is unknown, default to the landing screen.
         return <LandingScreen onConnectWallet={connectWallet} />;

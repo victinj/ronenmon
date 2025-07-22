@@ -1,27 +1,16 @@
 import React from 'react';
 import PlayerInfoCard from './PlayerInfoCard';
 import { useGameController } from '../hooks/useGameController';
-import { Routes } from '../App';
 
 
 const backButtonSrc = '/assets/image/backLogo.png'; // Reusing the exit logo for "Back"
 const logoWalletSrc = '/assets/image/walletLogo.png';
 const logoCoinSrc = '/assets/image/coinLogo.png';
 
-function WalletScreen({ player, navigateTo }) {
-  const controller = useGameController()
+function WithdrawScreen({ player, navigateTo }) {
   const handleBack = () => {
-    navigateTo('mainMenu');
+    navigateTo('wallet');
   };
-
-  const toDeposit = () => {
-    navigateTo("deposit")
-  }
-
-
-  const toWithdraw = () => {
-    navigateTo(Routes.withdraw)
-  }
 
   return (
     <div className="game-screen active">
@@ -65,11 +54,10 @@ function WalletScreen({ player, navigateTo }) {
             bg-gradient-to-t from-[#661A38] via-[#AE2C5F] to-[#CC3470]
             border-[2px] border-monster-slot-border 
             '>
-            <h2 className='text-3xl flex justify-center items-center'>Total RNM Balance</h2>
-            <h2 className='text-3xl flex justify-center items-start'>{`${controller.player?.balance || 0} RNM`}</h2>
-            <div className='grid grid-cols-2  row-span-2'>
-              <button onClick={toDeposit} className='bg-green-button m-5 mt-10 mb-10 border-black text-2xl border-[3px] rounded-[20px] shadow-button-default'><h2>Deposit</h2></button>
-              <button onClick={toWithdraw} className='bg-red-button m-5 mt-10 mb-10 border-black text-2xl border-[3px] rounded-[20px] shadow-button-default'>Withdraw</button>
+            <h2 className='text-3xl flex justify-center items-center text-green-700 font-bold text-shadow-heavy'>Eligible to withdraw</h2>
+            <input type='text' className=' flex text-center text-black rounded-[20px] m-5 h-full text-3xl' />
+            <div className='grid grid-cols-1 row-span-2'>
+              <button className='bg-blue-primary-btn m-5 mt-10 mb-10 border-black text-2xl border-[3px] rounded-[20px] shadow-button-default'><h2>Request Withdrawal</h2></button>
             </div>
           </div>
           <div className='row-span-4 
@@ -77,10 +65,8 @@ function WalletScreen({ player, navigateTo }) {
             bg-gradient-to-t from-[#661A38] via-[#AE2C5F] to-[#CC3470]
             overflow-y-auto
             '>
-            { }
-            <h2 className='text-5xl mt-10'>Recent</h2>
-            <h2 className='text-5xl'>Transaction</h2>
-            <h2 className='text-5xl mt-10'>No transaction Found</h2>
+            <h2 className='text-5xl mt-10'>Withdrawal History</h2>
+            <h2 className='text-5xl mt-10'>No Withdrawal yet</h2>
           </div>
         </div>
       </div>
@@ -88,4 +74,4 @@ function WalletScreen({ player, navigateTo }) {
   );
 }
 
-export default WalletScreen;
+export default WithdrawScreen;
