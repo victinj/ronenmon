@@ -22,7 +22,7 @@ body {
   justify-content: center;
   align-items: center;
   /* Asset path: /assets/backgroundHome.png (from your index.html) */
-  background-image: url('/assets/image/canyonBackground.png'); 
+  background-image: url('/assets/image/canyonBackground.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -38,7 +38,7 @@ body {
   /* These will be applied in App.jsx or component's root div */
   /* background-color: rgba(0, 0, 0, 0.5); /* Default overlay, but screens can override */
   color: theme('colors.white'); /* Default text color */
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease-in-out;

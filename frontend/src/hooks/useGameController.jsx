@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Routes } from '../App';
+import { Route } from 'react-router-dom';
 
 /**
   To make it even easier, you can simply start our next session with a
@@ -13,9 +15,9 @@ import { useState } from 'react';
 export function useGameController() {
   // --- MODEL: The Game's State ---
 
-  const [activeScreen, setActiveScreen] = useState('landing');
+  const [activeScreen, setActiveScreen] = useState(Routes.mainMenu);
   const [player, setPlayer] = useState(null);
-  
+
   // NEW: State to track loading and error conditions.
   // This is crucial for giving the user feedback.
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +27,7 @@ export function useGameController() {
   // --- CONTROLLER: Functions to update the state ---
 
   const navigateTo = (screenName) => {
+    console.log("active screen:", screenName)
     setActiveScreen(screenName);
   };
 
@@ -44,10 +47,10 @@ export function useGameController() {
       try {
         // --- This is where you would put the REAL wallet logic ---
         // For example: const result = await window.ronin.connect();
-        
+
         // For now, we'll simulate a successful connection.
         const simulatedAddress = 'ronin:d35bA91442088446629223343447D3593975b68A';
-        
+
         if (!simulatedAddress) {
           // This is how you would handle a real error.
           throw new Error("Wallet connection failed or was rejected by the user.");

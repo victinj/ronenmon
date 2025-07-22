@@ -1,29 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useGameController } from '../hooks/useGameController';
+import WalletModal from './WalletModal';
+import { Routes } from '../App';
 
-function LandingScreen({ changeScreen, openWalletModal }) {
+function LandingScreen({ navigateTo }) {
   // Asset path: /assets/logoRonenmon.png assuming it's in public/assets/
-  const roninmonLogoSrc = '/assets/image/roninmon-trademarkLogo.png'; 
-
+  const roninmonLogoSrc = '/assets/image/roninmon-trademarkLogo.png';
+  const controller = useGameController()
+  const [open, setOpen] = useState(false)
   const handleGetRoninmon = () => {
     // This will eventually navigate to your "Under Construction" page or OpenSea
     console.log("Get your Roninmon button clicked (React)!");
     // For now, let's simulate going to a main menu state for testing React navigation
-    changeScreen('main_menu'); // This assumes you'll build a MainMenuScreen component later
+    // changeScreen('main_menu'); // This assumes you'll build a MainMenuScreen component later
+    navigateTo(Routes.mainMenu)
   };
 
   const handleConnectWallet = () => {
     console.log("Connect Wallet button clicked (React)! Connecting to Ronin Network");
     // This will eventually open your React WalletModal component
     // alert("Wallet modal placeholder for Ronin connection in React!");
-    openWalletModal(); // This assumes you'll pass openWalletModal from App.jsx
+    // openWalletModal(); // This assumes you'll pass openWalletModal from App.jsx
+    setOpen(!open)
   };
 
   return (
     // Replaces the old #landing-screen div content
-    <div 
-      id="landing-screen" 
+    <div
+      id="landing-screen"
       className="game-screen active bg-transparent flex flex-col justify-center items-center"
-      // Note: background-image is on #root in index.css, so this screen is transparent.
+    // Note: background-image is on #root in index.css, so this screen is transparent.
     >
       <img
         src={roninmonLogoSrc}
@@ -60,6 +66,7 @@ function LandingScreen({ changeScreen, openWalletModal }) {
       >
         Connect Wallet
       </button>
+      <WalletModal isOpen={open} onClose={() => { setOpen(!open) }} />
     </div>
   );
 }
