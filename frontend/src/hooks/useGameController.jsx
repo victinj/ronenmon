@@ -15,7 +15,7 @@ import { Route } from 'react-router-dom';
 export function useGameController() {
   // --- MODEL: The Game's State ---
 
-  const [activeScreen, setActiveScreen] = useState(Routes.mainMenu);
+  const [activeScreen, setActiveScreen] = useState(Routes.landing);
   const [player, setPlayer] = useState(null);
 
   // NEW: State to track loading and error conditions.

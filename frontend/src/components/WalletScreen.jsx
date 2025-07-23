@@ -24,7 +24,7 @@ function WalletScreen({ player, navigateTo }) {
   }
 
   return (
-    <div className="game-screen active">
+    <div className="game-screen active bg-black/[0.2]">
       <div className='grid grid-cols-2'>
         <div>
           <div className="absolute  left-50px flex items-center">
@@ -68,7 +68,7 @@ function WalletScreen({ player, navigateTo }) {
             <h2 className='text-3xl flex justify-center items-center'>Total RNM Balance</h2>
             <h2 className='text-3xl flex justify-center items-start'>{`${controller.player?.balance || 0} RNM`}</h2>
             <div className='grid grid-cols-2  row-span-2'>
-              <button onClick={toDeposit} className='bg-green-button m-5 mt-10 mb-10 border-black text-2xl border-[3px] rounded-[20px] shadow-button-default'><h2>Deposit</h2></button>
+              <button onClick={toDeposit} className='bg-[#0BA345] m-5 mt-10 mb-10 border-black text-2xl border-[3px] rounded-[20px] shadow-button-default'><h2>Deposit</h2></button>
               <button onClick={toWithdraw} className='bg-red-button m-5 mt-10 mb-10 border-black text-2xl border-[3px] rounded-[20px] shadow-button-default'>Withdraw</button>
             </div>
           </div>
@@ -78,9 +78,9 @@ function WalletScreen({ player, navigateTo }) {
             overflow-y-auto
             '>
             { }
-            <h2 className='text-5xl mt-10'>Recent</h2>
-            <h2 className='text-5xl'>Transaction</h2>
-            <h2 className='text-5xl mt-10'>No transaction Found</h2>
+            <h2 className='text-3xl mt-10'>Recent</h2>
+            <h2 className='text-3xl'>Transaction</h2>
+            <h2 className='text-3xl mt-10'>No transaction Found</h2>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ function DepositScreen({ player, navigateTo }) {
   };
 
   return (
-    <div className="game-screen active">
+    <div className="game-screen active bg-black/[0.2]">
       <div className='grid grid-cols-2'>
         <div>
           <div className="absolute  left-50px flex items-center">
@@ -67,8 +67,8 @@ function DepositScreen({ player, navigateTo }) {
             bg-gradient-to-t from-[#661A38] via-[#AE2C5F] to-[#CC3470]
             overflow-y-auto
             '>
-            <h2 className='text-5xl mt-10'>Deposit History</h2>
-            <h2 className='text-5xl mt-10'>No deposit yet</h2>
+            <h2 className='text-3xl mt-10'>Deposit History</h2>
+            <h2 className='text-3xl mt-10'>No deposit yet</h2>
           </div>
         </div>
       </div>

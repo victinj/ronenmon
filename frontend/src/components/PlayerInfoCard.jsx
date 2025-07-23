@@ -9,9 +9,9 @@ import React from 'react';
 function PlayerInfoCard({ value, isWallet = false, additionalClasses = "" }) {
   return (
     <div className={`
-      min-w-[300px] h-[40px] rounded-md-card bg-game-card-bg border-[3px] border-game-card-border 
+      min-w-[200px] h-[40px] rounded-md-card bg-game-card-bg border-[3px] border-game-card-border 
       shadow-[0_2px_5px_rgba(0,0,0,0.4)] text-black flex items-center justify-center 
-      font-irish-grover text-1-4em 
+      font-irish-grover text-1-4em
      ${additionalClasses}
     `}>
       <span>{value}</span>

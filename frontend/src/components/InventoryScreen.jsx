@@ -63,22 +63,22 @@ function InventoryScreen({ player, navigateTo }) {
       <div className='flex h-full justify-center items-center'>
         <div className='grid grid-cols-7 w-3/4 h-[90%]'>
           <div className='flex col-span-1 items-center justify-center'>
-            <button className='text-9xl'>{'<'}</button>
+            <button className='text-9xl text-stroke-3-white text-black'>{'<'}</button>
           </div>
-          <div className='col-span-5'>
-            <div className='grid grid-cols-4 items-center w-full h-full gap-2'>
+          <div className='col-span-5 items-center flex'>
+            <div className='grid grid-cols-4 items-center w-full h-3/4 gap-50px'>
               {mocckMonster.map(monster => {
                 return <div className=''>
-                  <img src={monster.image} className='border-[2px] bg-monster-bg-box border-monster-slot-border h-[250px] object-contain ' />
+                  <img src={monster.image} className='border-[2px] bg-play-inner-bg border-monster-slot-border h-[250px] object-contain ' />
                   <div className=''>
-                    <h1 className=''>{monster.name}</h1>
+                    <h1 className='text-3xl'>{monster.name}</h1>
                   </div>
                 </div>
               })}
             </div>
           </div>
           <div className='flex col-span-1 justify-center items-center'>
-            <button className='text-9xl'>{'>'}</button>
+            <button className='text-9xl text-stroke-3-white text-black'>{'>'}</button>
           </div>
         </div>
       </div>
