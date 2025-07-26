@@ -28,7 +28,7 @@ function LandingScreen({ navigateTo }) {
     // Replaces the old #landing-screen div content
     <div
       id="landing-screen"
-      className="game-screen active bg-transparent flex flex-col justify-center items-center"
+      className="game-screen active flex flex-col justify-center items-center bg-black/[0.2]"
     // Note: background-image is on #root in index.css, so this screen is transparent.
     >
       <img

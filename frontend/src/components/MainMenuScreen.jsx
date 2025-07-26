@@ -37,21 +37,21 @@ function MainMenuScreen({ player, navigateTo }) {
   };
 
   return (
-    <div 
-      id="main-menu-screen" 
-      className="game-screen active bg-transparent block p-0"
-      >
+    <div
+      id="main-menu-screen"
+      className="game-screen active bg-black/[0.2] block p-0"
+    >
       <div className="absolute top-50px left-50px flex items-center">
         {/* Top Left Exit Button with text */}
-        <button 
-          id="exitBtn" 
+        <button
+          id="exitBtn"
           onClick={handleExit}
           className="group px-4 py-2 flex items-center gap-2 
                     text-white text-1-5em font-irish-grover 
                     border-none shadow-none"
         >
-          <img src={exitButtonSrc} alt="Exit" 
-              className="w-12 h-12 object-contain drop-shadow-icon-base"
+          <img src={exitButtonSrc} alt="Exit"
+            className="w-12 h-12 object-contain drop-shadow-icon-base"
           />
           <span>EXIT</span>
         </button>
@@ -63,7 +63,7 @@ function MainMenuScreen({ player, navigateTo }) {
             {/* Player Wallet Info Icon (Standalone) */}
             <img src={logoWalletSrc} alt="Player Icon" className="h-11 w-11 object-contain drop-shadow-icon-base" />
             {/* Player Wallet Info Card (Text Only) */}
-            <PlayerInfoCard value={player?.displayAddress || '...'} isWallet={true}/>
+            <PlayerInfoCard value={player?.displayAddress || '...'} isWallet={true} />
           </div>
 
           {/* Coin Resource */}
@@ -80,8 +80,8 @@ function MainMenuScreen({ player, navigateTo }) {
       {/* UPDATED: Left Sidebar Buttons - Adjusted size, position, and removed all hovers */}
       <div className="absolute left-70px bottom-50px flex flex-col gap-20px"> {/* Adjusted position and gap */}
         {/* Incubator Button */}
-        <button 
-          id="incubatorBtn" 
+        <button
+          id="incubatorBtn"
           onClick={handleIncubator}
           // UPDATED: Sidebar button dimensions and removed all hovers and transitions
           className="group relative w-sidebar-btn-w h-sidebar-btn-h p-0 rounded-full 
@@ -92,14 +92,14 @@ function MainMenuScreen({ player, navigateTo }) {
           <div className="absolute inset-sidebar-inner-inset rounded-full border-[1px] border-[#696969]
                           bg-gradient-to-t from-sidebar-inner-first to-sidebar-inner-second
                           flex justify-center items-center overflow-hidden">
-            <img src={incubatorButtonSrc} alt="Incubator" 
-                 className="w-[67px] h-[70px]object-contain drop-shadow-icon-base" />
+            <img src={incubatorButtonSrc} alt="Incubator"
+              className="w-[67px] h-[70px]object-contain drop-shadow-icon-base" />
           </div>
         </button>
 
         {/* Inventory Button */}
-        <button 
-          id="inventoryBtn" 
+        <button
+          id="inventoryBtn"
           onClick={handleInventory}
           className="group relative w-sidebar-btn-w h-sidebar-btn-h p-0 rounded-full 
                      bg-gradient-to-t from-sidebar-inner-second to-sidebar-inner-first shadow-sidebar-btn-base 
@@ -108,14 +108,14 @@ function MainMenuScreen({ player, navigateTo }) {
           <div className="absolute inset-sidebar-inner-inset rounded-full border-[1px] border-[#696969]
                           bg-gradient-to-t from-sidebar-inner-first to-sidebar-inner-second
                           flex justify-center items-center overflow-hidden">
-            <img src={inventoryButtonSrc} alt="Inventory" 
-                 className="w-[70px] h-[70px] object-contain drop-shadow-icon-base" />
+            <img src={inventoryButtonSrc} alt="Inventory"
+              className="w-[70px] h-[70px] object-contain drop-shadow-icon-base" />
           </div>
         </button>
 
         {/* Wallet Button */}
-        <button 
-          id="walletPageSidebarBtn" 
+        <button
+          id="walletPageSidebarBtn"
           onClick={handleWalletPage}
           className="group relative w-sidebar-btn-w h-sidebar-btn-h p-0 rounded-full 
                      bg-gradient-to-t from-sidebar-inner-second to-sidebar-inner-first 
@@ -125,15 +125,15 @@ function MainMenuScreen({ player, navigateTo }) {
           <div className="absolute inset-sidebar-inner-inset rounded-full border-[1px] border-[#696969]
                           bg-gradient-to-t from-sidebar-inner-first to-sidebar-inner-second
                           flex justify-center items-center overflow-hidden">
-            <img src={walletButtonSrc} alt="Wallet" 
-                 className="w-[70px] h-[70px] object-contain drop-shadow-icon-base" />
+            <img src={walletButtonSrc} alt="Wallet"
+              className="w-[70px] h-[70px] object-contain drop-shadow-icon-base" />
           </div>
         </button>
       </div>
 
       {/* UPDATED: Bottom Right Play Button - Fixed arbitrary values for dimensions and positions */}
-      <button 
-        id="playBtn" 
+      <button
+        id="playBtn"
         onClick={handlePlay}
         // Corrected positioning to bottom-right, explicitly canceling top/left
         className="group !absolute bottom-[50px] right-[50px] w-[300px] h-[120px] rounded-[100px] 
