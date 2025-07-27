@@ -11,6 +11,7 @@ import WalletScreen from './components/WalletScreen';
 import { BrowserRouter, Route } from 'react-router-dom';
 import DepositScreen from './components/DepositScreen';
 import WithdrawScreen from './components/WithdrawScreen';
+import BattleScreen from './components/BattleScreen';
 
 export const Routes = {
   landing: "landing",
@@ -20,7 +21,8 @@ export const Routes = {
   incubator: "incubator",
   wallet: "wallet",
   deposit: "deposit",
-  withdraw: "withdraw"
+  withdraw: "withdraw",
+  battle: "battle"
 }
 
 function App() {
@@ -53,6 +55,8 @@ function App() {
         return <DepositScreen player={player} navigateTo={navigateTo} />;
       case Routes.withdraw:
         return <WithdrawScreen player={player} navigateTo={navigateTo} />;
+      case Routes.battle:
+        return <BattleScreen player={player} navigateTo={navigateTo} />;
       default:
         // If the screen name is unknown, default to the landing screen.
         return <LandingScreen onConnectWallet={connectWallet} />;
