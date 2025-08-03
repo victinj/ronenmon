@@ -36,3 +36,19 @@ def get_or_create_player(db: Session, wallet_address: str):
 # We will add more functions here later, such as:
 # - create_nft_for_player
 # - get_player_nfts
+
+def create_nft_for_player(db: Session, nft: schemas.NFTCreate, player_id: int):
+    """
+    Creates a new NFT record in the database and associates it with a player.
+    """
+    db_nft = models.NFT(**nft.dict(), owner_id=player_id)
+    db.add(db_nft)
+    db.commit()
+    db.refresh(db_nft)
+    return db_nft
+
+def get_player_nfts(db: Session, player_id: int):
+    """
+    Retrieves all NFT records associated with a specific player.
+    """
+    return db.query(models.NFT).filter(models.NFT.owner_id == player_id).all()

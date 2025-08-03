@@ -2,6 +2,24 @@
 
 This document tracks the development progress and context for the Roninmon project when using Gemini.
 
+### July 29, 2025
+
+**Goal:** Refactor the wallet connection flow from a modal to a dedicated screen for improved UI/UX.
+
+**Progress:**
+
+1.  **Component Refactoring:**
+    *   Replaced the `WalletModal` component with a new, full-screen `ConnectWalletScreen` component to create a more immersive and polished user experience.
+2.  **Routing:**
+    *   Updated the application's routing in `App.jsx` to handle the new `ConnectWalletScreen`.
+3.  **Styling & Layout:**
+    *   Adjusted the layout of the `ConnectWalletScreen` for better visual hierarchy.
+    *   Fixed an issue in `WalletConnectButton` where it wasn't accepting `style` props, enabling proper customization.
+4.  **Cleanup:**
+    *   Deleted the old `WalletModal.jsx` file.
+
+---
+
 ### July 28, 2025
 
 **Goal:** Connect the FastAPI backend to the Supabase database and resolve environment issues.

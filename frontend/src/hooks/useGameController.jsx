@@ -35,48 +35,36 @@ export function useGameController() {
    * Connects the user's wallet.
    * This function now simulates an asynchronous operation.
    */
-  const connectWallet = () => {
-    // 1. Clear any previous errors and start loading.
+  const connectWallet = async (walletAddress) => {
+    if (!walletAddress) return;
+
     setError(null);
     setIsLoading(true);
-    console.log("Attempting to connect wallet...");
+    console.log(`Wallet connected: ${walletAddress}. Fetching player data...`);
 
-    // Simulate a network request (e.g., to a wallet extension)
-    // This will take 1.5 seconds to complete.
-    setTimeout(() => {
-      try {
-        // --- This is where you would put the REAL wallet logic ---
-        // For example: const result = await window.ronin.connect();
-
-        // For now, we'll simulate a successful connection.
-        const simulatedAddress = 'ronin:d35bA91442088446629223343447D3593975b68A';
-
-        if (!simulatedAddress) {
-          // This is how you would handle a real error.
-          throw new Error("Wallet connection failed or was rejected by the user.");
-        }
-
-        // 2. On Success: Update the player state.
-        setPlayer({
-          address: simulatedAddress,
-          // We can truncate the address for display purposes later, in the View.
-          displayAddress: `${simulatedAddress.substring(0, 6)}...${simulatedAddress.substring(simulatedAddress.length - 4)}`,
-          balance: 100, // Placeholder balance
-        });
-
-        // 3. Navigate to the main menu.
-        navigateTo('mainMenu');
-
-      } catch (err) {
-        // 4. On Failure: Set the error message.
-        console.error(err);
-        setError(err.message);
-        setPlayer(null); // Ensure player is logged out on error.
-      } finally {
-        // 5. Stop loading, whether it succeeded or failed.
-        setIsLoading(false);
+    try {
+      const response = await fetch(`http://localhost:8000/api/v1/player/${walletAddress}`);
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch player data. Status: ${response.status}`);
       }
-    }, 1500); // 1.5 second delay
+
+      const playerData = await response.json();
+
+      setPlayer({
+        ...playerData,
+        displayAddress: `${playerData.wallet_address.substring(0, 6)}...${playerData.wallet_address.substring(playerData.wallet_address.length - 4)}`,
+      });
+
+      navigateTo(Routes.mainMenu);
+
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+      setPlayer(null);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
 

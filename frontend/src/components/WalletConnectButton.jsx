@@ -8,7 +8,7 @@ import {
   requestRoninWalletConnector,
 } from "@sky-mavis/tanto-connect";
 
-function ConnectRoninWalletButton({ onConnect, onDisconnect, className, buttonText }) {
+function ConnectRoninWalletButton({ onConnect, onDisconnect, className, buttonText, style, ...rest }) {
   const [connector, setConnector] = useState(null);
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [error, setError] = useState(null);
@@ -121,12 +121,12 @@ function ConnectRoninWalletButton({ onConnect, onDisconnect, className, buttonTe
   return (
     <div className="flex flex-col items-center">
       {connectedAddress ? (
-        <button onClick={handleDisconnect} className={className}>
+        <button onClick={handleDisconnect} className={className} style={style} {...rest}>
           <img src="/assets/ronin_wallet_icon.png" alt="Ronin Wallet Icon" className="wallet-logo" />
           {connectedAddress.substring(0, 6)}...{connectedAddress.substring(connectedAddress.length - 4)}
         </button>
       ) : (
-        <button onClick={connectRoninWallet} className={className}>
+        <button onClick={connectRoninWallet} className={className} style={style} {...rest}>
           {buttonText || "Connect Ronin Wallet"}
         </button>
       )}

@@ -8,6 +8,7 @@ import MonsterScreen from './components/MonsterScreen';
 import InventoryScreen from './components/InventoryScreen';
 import IncubatorScreen from './components/IncubatorScreen';
 import WalletScreen from './components/WalletScreen';
+import ConnectWalletScreen from './components/ConnectWalletScreen';
 import { BrowserRouter, Route } from 'react-router-dom';
 import DepositScreen from './components/DepositScreen';
 import WithdrawScreen from './components/WithdrawScreen';
@@ -20,6 +21,7 @@ export const Routes = {
   inventory: "inventory",
   incubator: "incubator",
   wallet: "wallet",
+  connectWallet: "connectWallet",
   deposit: "deposit",
   withdraw: "withdraw",
   battle: "battle"
@@ -51,6 +53,8 @@ function App() {
         return <IncubatorScreen player={player} navigateTo={navigateTo} />;
       case Routes.wallet:
         return <WalletScreen player={player} navigateTo={navigateTo} />;
+      case Routes.connectWallet:
+        return <ConnectWalletScreen onConnectWallet={connectWallet} navigateTo={navigateTo} />;
       case Routes.deposit:
         return <DepositScreen player={player} navigateTo={navigateTo} />;
       case Routes.withdraw:

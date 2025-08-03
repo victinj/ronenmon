@@ -1,63 +1,132 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useGameController } from '../hooks/useGameController';
-import WalletModal from './WalletModal';
 import { Routes } from '../App';
 
-function LandingScreen({ navigateTo }) {
+function LandingScreen({ onConnectWallet, navigateTo }) {
   const roninmonLogoSrc = '/assets/image/roninmon-trademarkLogo.png';
   const controller = useGameController()
-  const [open, setOpen] = useState(false)
+  
+  // Figma design base dimensions
+  const FIGMA_WIDTH = 1920;
+  const FIGMA_HEIGHT = 1080;
+  
+  // Responsive scaling function
+  const getResponsiveValue = (figmaValue, dimension = 'width') => {
+    if (dimension === 'width') {
+      return `${(figmaValue / FIGMA_WIDTH) * 100}vw`;
+    } else {
+      return `${(figmaValue / FIGMA_HEIGHT) * 100}vh`;
+    }
+  };
+  
   const handleGetRoninmon = () => {
-    // This will eventually navigate to your "Under Construction" page or OpenSea
     console.log("Get your Roninmon button clicked (React)!");
-    // For now, let's simulate going to a main menu state for testing React navigation
-    // changeScreen('main_menu'); // This assumes you'll build a MainMenuScreen component later
     navigateTo(Routes.mainMenu)
   };
 
   const handleConnectWallet = () => {
-    console.log("Connect Wallet button clicked (React)! Connecting to Ronin Network");
-    // This will eventually open your React WalletModal component
-    // alert("Wallet modal placeholder for Ronin connection in React!");
-    // openWalletModal(); // This assumes you'll pass openWalletModal from App.jsx
-    setOpen(!open)
+    console.log("Connect Wallet button clicked (React)! Navigating to wallet screen.");
+    navigateTo(Routes.connectWallet);
   };
 
   return (
     <div
       id="landing-screen"
-      className="game-screen active flex flex-col justify-center items-center bg-black/[0.2]"
+      className="game-screen active flex flex-col justify-center items-center bg-black/[0.2] w-screen h-screen relative"
     >
-      <img
-        src={roninmonLogoSrc}
-        alt="Roninmon Logo"
-        className="max-w-[40%] h-auto mb-5 drop-shadow-[0_0_10px_rgba(0,0,0,0.7)] 
-                   transition-transform duration-300 ease-out 
-                   hover:scale-[1.03] hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.8)] 
-                   cursor-pointer"
-      />
-
-      <button
-        onClick={handleGetRoninmon}
-        className="px-3 py-2 my-2 border-[3px] border-black rounded-xl text-1-8em cursor-pointer 
-                   transition-all duration-200 ease-in-out shadow-[0px_10px_10px_rgba(0,0,0,0.56)] 
-                   active:shadow-[inset_0px_3px_6px_rgba(0,0,0,0.43)] active:translate-y-1 
-                   bg-[#0B6DA3] text-white flex items-center justify-center gap-2"
+      {/* Main container div - matches Figma parent container */}
+      <div
+        className="flex flex-col items-center absolute"
+        style={{
+          width: getResponsiveValue(805.5),
+          height: getResponsiveValue(494.7899169921875, 'height'),
+          top: getResponsiveValue(292, 'height'),
+          left: getResponsiveValue(557),
+          gap: getResponsiveValue(50, 'height'),
+        }}
       >
-        Get your Roninmon
-      </button>
+        {/* Logo */}
+        <img
+          src={roninmonLogoSrc}
+          alt="Roninmon Logo"
+          className="w-full h-auto drop-shadow-[0_0_10px_rgba(0,0,0,0.7)] 
+                     transition-transform duration-300 ease-out 
+                     hover:scale-[1.03] hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.8)] 
+                     cursor-pointer"
+          style={{
+            maxWidth: '100%',
+            objectFit: 'contain'
+          }}
+        />
 
-      <button
-        onClick={handleConnectWallet}
-        // Applying Tailwind classes from your old .game-button and .game-button.secondary CSS
-        className="px-3 py-2 my-2 border-[3px] border-black rounded-xl text-1-8em cursor-pointer 
-                   transition-all duration-200 ease-in-out shadow-[0px_10px_10px_rgba(0,0,0,0.56)] 
-                   active:shadow-[inset_0px_3px_6px_rgba(0,0,0,0.43)] active:translate-y-1 
-                   bg-[#D3BF2C] text-white flex items-center justify-center gap-2"
-      >
-        Connect Wallet
-      </button>
-      <WalletModal isOpen={open} onClose={() => { setOpen(!open) }} />
+        {/* Buttons container div - matches Figma buttons container */}
+        <div
+          className="flex flex-col items-center justify-center"
+          style={{
+            width: getResponsiveValue(357),
+            height: getResponsiveValue(190, 'height'),
+            gap: getResponsiveValue(22, 'height'),
+          }}
+        >
+          <button
+            onClick={handleGetRoninmon}
+            className="cursor-pointer 
+                       transition-all duration-200 ease-in-out shadow-[0px_10px_10px_rgba(0,0,0,0.56)] 
+                       active:shadow-[inset_0px_3px_6px_rgba(0,0,0,0.43)] active:translate-y-1 
+                       bg-[#0B6DA3] text-white flex items-center justify-center"
+            style={{
+              width: getResponsiveValue(357),
+              height: getResponsiveValue(84, 'height'),
+              borderRadius: getResponsiveValue(20),
+              borderWidth: getResponsiveValue(4),
+              borderColor: 'black',
+              borderStyle: 'solid',
+              padding: getResponsiveValue(20),
+              gap: getResponsiveValue(10),
+              fontFamily: 'Irish Grover',
+              fontWeight: 400,
+              fontStyle: 'normal',
+              fontSize: getResponsiveValue(36),
+              lineHeight: '100%',
+              letterSpacing: '0%',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden'
+            }}
+          >
+            Get your Roninmon
+          </button>
+
+          <button
+            onClick={handleConnectWallet}
+            className="cursor-pointer 
+                       transition-all duration-200 ease-in-out shadow-[0px_10px_10px_rgba(0,0,0,0.56)] 
+                       active:shadow-[inset_0px_3px_6px_rgba(0,0,0,0.43)] active:translate-y-1 
+                       bg-[#D3BF2C] text-white flex items-center justify-center"
+            style={{
+              width: getResponsiveValue(279),
+              height: getResponsiveValue(84, 'height'),
+              borderRadius: getResponsiveValue(20),
+              borderWidth: getResponsiveValue(4),
+              borderColor: 'black',
+              borderStyle: 'solid',
+              padding: getResponsiveValue(20),
+              gap: getResponsiveValue(10),
+              fontFamily: 'Irish Grover',
+              fontWeight: 400,
+              fontStyle: 'normal',
+              fontSize: getResponsiveValue(36),
+              lineHeight: '100%',
+              letterSpacing: '0%',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden'
+            }}
+          >
+            Connect Wallet
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
