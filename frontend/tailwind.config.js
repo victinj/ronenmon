@@ -11,13 +11,14 @@ export default {
       },
       colors: { 
         'dark-gray-bg': '#333',
-        'blue-primary-btn': '#0B6DA3',
-        'yellow-secondary-btn': '#D3BF2C',
+        'blue-gyr-btn': '#0B6DA3',
+        'yellow-cw-btn': '#D3BF2C',
         'game-card-bg': '#CACACA',
         'game-card-border': '#474747',
         'modal-gradient-dark': '#661A38',
         'modal-gradient-mid': '#AE2C5F',
         'modal-gradient-light': '#CC3470',
+        'modal-border': '#D8C967',
         'exit-btn-border': '#D8C967',
         'tv-border': '#474747',
         'tv-bg-light': '#dedede',
@@ -46,7 +47,6 @@ export default {
         'play-inner-border': '#494A58',
         'tv-bg-first': '#DBDBDB',
         'tv-bg-second': "#757575",
-        'monster-bg-box': 'rgba(204, 52, 112, 0.64)',
         'red-button': '#CC3470',
         'green-button': '#59FF47',
         'bar-progress' : '#D9D9D9',
@@ -124,7 +124,6 @@ export default {
         'play-mid-h': '80px',
         'play-inner-inset': '2px', 
         'sidebar-inner-inset': '10px', 
-        // NEW: Sidebar button dimensions
         'sidebar-btn-w': '115px',
         'sidebar-btn-h': '115px',
       },
@@ -146,7 +145,6 @@ export default {
         '10em': '10em',
         'text-base': '1rem', 
       },
-      // NEW: Add a custom text-stroke utility
       textStroke: {
         '1': '1px',
         '2': '2px',
@@ -154,20 +152,16 @@ export default {
         '4': '4px',
         '5': '5px',
         '6': '6px',
-        'paint-order': 'stroke fill'
-      },
-      textOutsideStroke: {
-        'paint-order': 'stroke fill'
       },
       textStrokeColor: {
         'black': '#000000',
         'white': '#ffffff',
-        'yellow-border': '#D8C967', // A color from your WalletModal
-        // You can add more custom colors here
+        'yellow-border': '#D8C967',
       },
       textShadow: {
         'heavy': '0px 0px 2px rgba(0, 0, 0, 1), 0px 0px 2px rgba(0, 0, 0, 1), 0px 0px 2px rgba(0, 0, 0, 1)',
         'glow': '0 0 5px rgba(255,255,255,0.7), 0 0 10px rgba(255,255,255,0.5)',
+        'md': '0 4px 6px rgba(0, 0, 0, 0.25)',
         'none': 'none',
       },
     },
@@ -178,17 +172,7 @@ export default {
         { 'text-shadow': (value) => ({ textShadow: value }) },
         { values: theme('textShadow') }
       );
-    },
-    // NEW: Plugin to generate the text-stroke utilities
-    function({ addUtilities, theme }) {
-      const newUtilities = {
-        '.text-shadow-md': {
-          textShadow: '0 4px 6px rgba(0, 0, 0, 0.25)',
-        },
-        // You can keep other custom utilities you have
-      };
       
-      // Generate the text-stroke classes
       const textStrokeUtilities = {};
       Object.entries(theme('textStroke')).forEach(([key, value]) => {
         Object.entries(theme('textStrokeColor')).forEach(([colorKey, colorValue]) => {
@@ -198,21 +182,7 @@ export default {
           };
         });
       });
-      addUtilities(textStrokeUtilities, ['responsive', 'hover']);
-
-      const textShadowUtilities = {
-              '.text-shadow-heavy': { textShadow: theme('textShadow.heavy') },
-              '.text-shadow-glow': { textShadow: theme('textShadow.glow') },
-              '.text-shadow-none': { textShadow: theme('textShadow.none') },
-            };
-            addUtilities(textShadowUtilities, ['responsive']);
-
-      // Add a utility to remove default text shadow
-      addUtilities({
-        '.text-shadow-none': {
-          textShadow: 'none',
-        },
-      }, ['responsive']);
+      matchUtilities(textStrokeUtilities, ['responsive', 'hover']);
     },
   ],
 }

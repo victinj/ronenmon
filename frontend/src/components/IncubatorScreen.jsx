@@ -1,30 +1,32 @@
 import React from 'react';
+import PlayerInfoCard from './PlayerInfoCard';
 
 function IncubatorScreen({ player, navigateTo }) {
+    const backLogoSrc = '/assets/image/backLogo.png';
+    const incubatorLogoSrc = '/assets/image/incubatorLogo.png';
+    const walletLogoSrc = '/assets/image/walletLogo.png';
+    const coinLogoSrc = '/assets/image/coinLogo.png';
+    const incubatorContainer = '/assets/image/incubatorContainer.png';
+
     const handleBack = () => {
-        navigateTo('mainMenu'); // Function to go back to the Main Menu
+        navigateTo('mainMenu');
     };
 
+    const handleIncubatorContainer = () => {
+        navigateTo('incubatorContainer');
+    };
+
+    const handleBuyIncubator = () => {
+        navigateTo('incubtatorBuy');
+    };
+
+
     return (
-        // Apply the base game-screen class for structure and transitions
-        // Then add Tailwind utility classes for the background
-        <div 
-            id="incubator-page-screen" 
-            className="game-screen active flex flex-col justify-center items-center text-white
-                       bg-incubator-bg bg-cover bg-center bg-no-repeat" // NEW Tailwind background classes
-        >
-            <h1>Roninmon Incubator</h1>
-            <p>Hatch new Roninmon here!</p>
-            <button 
-                onClick={handleBack}
-                // Apply Tailwind classes for your tertiary button style
-                className="px-3 py-2 my-2 border-3 border-black rounded-lg text-xl font-bold cursor-pointer 
-                           transition-all duration-200 ease-in-out shadow-[0px_10px_10px_rgba(0,0,0,0.56)] 
-                           active:shadow-[inset_0px_3px_6px_rgba(0,0,0,0.7)] active:translate-y-1 
-                           bg-transparent text-white flex items-center justify-center gap-2"
+        <div
+            id='incubator screen'
+            className=''
             >
-                Back to Main Menu
-            </button>
+
         </div>
     );
 }

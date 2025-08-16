@@ -171,7 +171,7 @@ function MonsterScreen({ player, navigateTo }) {
         </div>
         <div className='relative h-3/4'>
           <div className='h-full'>
-            <div className='w-full h-full bg-monster-bg-box
+            <div className='w-full h-full bg-monster-grid-bg
                         border-[6px] border-tv-border rounded-3xl 
                         p-6 shadow-lg grid grid-cols-5 gap-6'>
               {mockMonsters.map((monster) => (
